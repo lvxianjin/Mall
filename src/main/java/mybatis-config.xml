@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "mybatis-3-config.dtd" >
+<configuration>
+  <!-- 配置简写 -->
+  <typeAliases>
+    <typeAlias type="java.util.Map" alias="m"/>
+    <typeAlias type="java.lang.Object" alias="obj"/>
+  </typeAliases>
+  <!-- 扫描包-->
+  <mappers>
+    <package name="com.qdlg.mybatis"/>
+  </mappers>
+  
+</configuration>
