@@ -5,6 +5,7 @@
   <typeAliases>
     <typeAlias type="java.util.Map" alias="m"/>
     <typeAlias type="java.lang.Object" alias="obj"/>
+    <typeAlias type="com.qdlg.model.User" alias="user"/>
   </typeAliases>
   <!-- 扫描包-->
   <mappers>

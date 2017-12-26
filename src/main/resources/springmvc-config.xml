@@ -11,13 +11,13 @@
         http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd     
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-4.2.xsd">
-    
      <!-- 注解映射器 -->
     <mvc:annotation-driven/>
     
-    <!-- 指定 注解映射器扫描的控制器基础包,该包的所有子包都会被扫描 -->    
-    <context:component-scan base-package="com.qdlg.*"/>
-
+    <!-- 指定 注解映射器扫描的控制器基础包,该包的所有子包都会被扫描 -->
+    <context:component-scan base-package="com.qdlg.controller"/>
+    <context:component-scan base-package="com.qdlg.service"/>
+    <context:component-scan base-package="com.qdlg.mybatis"/>
     <!-- viewResolver视图解析器指定显示的页面,配置前缀和后缀-->
     <bean id="viewResolver"  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
