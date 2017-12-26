@@ -21,11 +21,12 @@ import java.util.Map;
 public class LoginController {
     @Autowired
     private LoginService service=null;
-    @RequestMapping("index.html")
-    public String openWindow()
-    {
-        return "login";
-    }
+//    @RequestMapping("index.html")
+//    public String openWindow()
+//    {
+//
+//        return "login";
+//    }
     @RequestMapping("login.html")
     public String checkUser(Login view, Model model){
 
@@ -33,6 +34,8 @@ public class LoginController {
         try {
             Map<String,Object> dto= BeanUtils.describe(view);
             User user = this.service.checkUser(dto);
+            GoodsListController gc = new GoodsListController();
+            gc.getPhoneList(model);
             if(user.getNick_name()!=null&&user.getNick_name()!=""){
                 model.addAttribute("Userinfo",user);
                 path = "index";

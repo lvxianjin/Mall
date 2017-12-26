@@ -1,4 +1,4 @@
-package com.qdlg.mybatis.dao;
+package com.qdlg.mybatis;
 
 import com.qdlg.model.User;
 

@@ -1,12 +1,11 @@
 package com.qdlg.service.impl;
 
 import com.qdlg.model.User;
-import com.qdlg.mybatis.dao.LoginDao;
+import com.qdlg.mybatis.LoginDao;
 import com.qdlg.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -18,7 +17,6 @@ public class LoginServicceImpl implements LoginService {
     private LoginDao dao=null;
     @Override
     public User checkUser(Map<String,Object> dto) {
-
         return this.dao.checkUser(dto);
     }
 }

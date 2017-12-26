@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.qdlg.mybatis.GoodsListDao">
+    <resultMap id="phoneList" type="com.qdlg.model.Phone">
+        <!--执行sql语句返回的结果集与实体类对应-->
+        <id column="id" jdbcType="INTEGER" property="id"></id>
+        <result column="virtual_phone_id" jdbcType="INTEGER" property="virtual_phone_id"></result>
+        <result column="color" jdbcType="VARCHAR" property="color"></result>
+        <result column="ram" jdbcType="VARCHAR" property="ram"></result>
+        <result column="rom" jdbcType="VARCHAR" property="rom"></result>
+        <result column="img_src" jdbcType="VARCHAR" property="img_src"></result>
+        <result column="price" jdbcType="FLOAT" property="price"></result>
+        <result column="amount" jdbcType="INTEGER" property="amount"></result>
+        <result column="title" jdbcType="VARCHAR" property="title"></result>
+        <result column="description" jdbcType="VARCHAR" property="description"></result>
+    </resultMap>
+    <select id="getPhoneList" resultMap="phoneList">
+        select * from actual_phone where 1=1
+    </select>
+</mapper>
