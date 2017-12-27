@@ -1,0 +1,31 @@
+body{
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}
+
+form{
+    margin: 0px;
+    padding: 0px;
+}
+
+ul{
+    margin: 0px;
+    padding: 0px;
+}
+h1,h2,h3,h4,h5,h6{
+    margin: 0px;
+    font-weight: normal;
+    text-align: left;
+}
+.a-base{
+    text-decoration: none;
+}
+
+.li-base{
+    list-style: none;
+}
+
+.hide{
+    display: none;
+}

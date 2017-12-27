@@ -20,6 +20,8 @@ public class GoodsListController {
     @RequestMapping("index.html")
     public String getPhoneList(Model model){
         model.addAttribute("phoneList",this.service.getPhoneList());
+        model.addAttribute("notebookList",this.service.getNoteBookList());
+        model.addAttribute("tvList",this.service.getTVList());
         return "index";
     }
 }

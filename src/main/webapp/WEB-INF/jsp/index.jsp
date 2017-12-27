@@ -207,20 +207,21 @@
         <section class="phone-area">
             <h2 class="area-title">手机</h2>
             <div class="items-area">
-                <div class="items-block">
-                    <div class="slogan-ctn">
-                        <span class="slogan-jiuzhe">新品</span>
+                <c:forEach items="${phoneList}" var="phone" varStatus="status">
+                    <div class="items-block">
+                        <div class="slogan-ctn">
+                            <span class="slogan-jiuzhe">新品</span>
+                        </div>
+                        <img class="img-goods-item" src="<%=basePath%>/images/${phone.img_src}">
+                        <br><span class="goods-title">${phone.title}</span>
+                        <br><span class="goods-descp">${phone.description}</span>
+                        <br><span class="now-price">${phone.now_price}</span>
+                        <span class="old-price">${phone.old_price}</span>
+
                     </div>
-                    <img class="img-goods-item" src="<%=basePath%>/images/goods-phone1.png">
-                    <br><span class="goods-title">小米Max 2</span>
-                    <br><span class="goods-descp">大屏大电量，轻薄全金属</span>
-                    <br><span class="now-price">1999</span>
-                    <span class="old-price">2199</span>
-                </div>
+                </c:forEach>
 
-                <div class="items-block">
-
-                </div>
+                <div class="items-block"></div>
                 <div class="items-block"></div>
                 <div class="items-block"></div>
                 <div class="items-block"></div>
@@ -236,7 +237,7 @@
                             <span class="span2">手机</span>
                         </a>
                     </div>
-                    <div class="<%=basePath%>/images/span-iconfont">
+                    <div class="span-iconfont">
                         <a href="" class="a-base">&#xe615;</a>
                     </div>
                 </div>
@@ -319,9 +320,4 @@
     </div>
 </div>
 </body>
-<script>
-    /* for(var i = 100; i <999; i ++){
-     $('<body>').append($.create(`<input type="text" value="${'&#xe'+i+';-'+i}" class="span-iconfont-test">`));
-     } */
-</script>
 </html>

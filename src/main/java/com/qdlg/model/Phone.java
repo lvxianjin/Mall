@@ -10,10 +10,27 @@ public class Phone {
     private String ram;
     private String rom;
     private String img_src;
-    private String price;
+    private float now_price;
+    private float old_price;
     private int amount;
     private String title;
     private String description;
+
+    public float getNow_price() {
+        return now_price;
+    }
+
+    public void setNow_price(float new_price) {
+        this.now_price = new_price;
+    }
+
+    public float getOld_price() {
+        return old_price;
+    }
+
+    public void setOld_price(float old_price) {
+        this.old_price = old_price;
+    }
 
     public String getTitle() {
         return title;
@@ -77,14 +94,6 @@ public class Phone {
 
     public void setImg_src(String img_src) {
         this.img_src = img_src;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     public int getAmount() {
