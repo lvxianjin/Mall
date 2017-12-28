@@ -683,7 +683,7 @@ var installHelper = (function(){
 		return this;
 	}
 	//opt {baseX:,baseY:,moveX:,moveY:,targetX:,targetY:,last:}
-	function move(obj,opt,args){		
+	function move(obj,opt,args){
 		if(!(obj instanceof _$) || typeof opt != 'object'){
 			if(_$.log)
 				console.log("function move: arguments expected to be (_$,Object)");
@@ -706,7 +706,7 @@ var installHelper = (function(){
 			}
 			if(opt.baseY != undefined){
 				if(opt.moveY){
-					speedY = opt.moveY/times;				
+					speedY = opt.moveY/times;	
 					targetY = opt.moveY+opt.baseY;
 				}else{
 					speedY = (opt.targetY-opt.baseY)/times;				
@@ -726,9 +726,9 @@ var installHelper = (function(){
 							opt.fn(args);
 						return;
 					}
-					if(((targetX-x)<=0 && -1*(targetX-x)<=speedX)|| (targetX-x>0 && targetX-x<=speedX)){
+					if(speedX < 0 && x - targetX < -speedX || speedX > 0 && targetX - x < speedX)
 						x = targetX;
-					}else{
+					else{
 						x += speedX;
 					}
 				}
@@ -739,9 +739,9 @@ var installHelper = (function(){
 							opt.fn(args);
 						return;
 					}
-					if(((targetY-y)<=0 && -1*(targetY-y)<=speedY)|| (targetY-y>0 && targetY-y<=speedY)){
+					if(speedY < 0 && y - targetY < -speedY || speedY > 0 && targetY - y < speedY)
 						y = targetY;
-					}else{
+					else{
 						y +=speedY;
 					}
 				}
@@ -839,10 +839,10 @@ var installHelper = (function(){
 							opt.fn(args);
 						return;
 					}
-					if(((targetX[0]-x[0])<=0 && -1*(targetX[0]-x[0])<=speedX[0]) || (targetX[0]-x[0]>0 && targetX[0]-x[0]<=speedX[0])){
+					if(speedX[0] < 0 && x[0]- targetX[0] < -speedX[0] || speedX[0] > 0 && targetX[0] - x[0] < speedX[0])
 						for(var i=0;i<x.length;i++)
 							x[i] = targetX[i];
-					}else{
+					else{
 						for(var i=0;i<x.length;i++)
 							x[i] += speedX[i];
 					}
@@ -854,12 +854,10 @@ var installHelper = (function(){
 							opt.fn(args);
 						return;
 					}
-					if((targetY[0]-y[0])<=0 && -1*(targetY[0]-y[0])<=(-1*speedY[0]) || (targetY[0]-y[0]>0 && targetY[0]-y[0]<=speedY[0])){					
-						
+					if(speedY[0] < 0 && y[0]- targetY[0] < -speedY[0] || speedY[0] > 0 && targetY[0] - y[0] < speedY[0])
 						for(var i=0;i<y.length;i++)
 							y[i] = targetY[i];
-
-					}else{
+					else{
 						for(var i=0;i<y.length;i++)
 							y[i] +=speedY[i];
 					}

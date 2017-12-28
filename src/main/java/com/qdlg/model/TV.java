@@ -1,5 +1,7 @@
 package com.qdlg.model;
 
+import java.sql.Timestamp;
+
 /**
  * Created by 10184 on 2017/12/27.
  */
@@ -10,11 +12,20 @@ public class TV {
     private String color;
     private String version;
     private String img_src;
-    private float new_price;
+    private float now_price;
     private float old_price;
     private int amount;
     private String title;
     private String description;
+    private Timestamp addtime;
+
+    public Timestamp getAddtime() {
+        return addtime;
+    }
+
+    public void setAddtime(Timestamp addtime) {
+        this.addtime = addtime;
+    }
 
     public int getId() {
         return id;
@@ -64,12 +75,12 @@ public class TV {
         this.img_src = img_src;
     }
 
-    public float getNew_price() {
-        return new_price;
+    public float getNow_price() {
+        return now_price;
     }
 
     public void setNew_price(float new_price) {
-        this.new_price = new_price;
+        this.now_price = now_price;
     }
 
     public float getOld_price() {

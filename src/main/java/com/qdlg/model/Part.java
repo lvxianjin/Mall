@@ -3,20 +3,22 @@ package com.qdlg.model;
 import java.sql.Timestamp;
 
 /**
- * Created by 10184 on 2017/12/27.
+ * Created by 10184 on 2017/12/28.
  */
-public class NoteBook {
+public class Part {
     private int id;
-    private int virtual_notebook_id;
+    private String title;
     private String color;
-    private String version;
+    private String description;
     private String img_src;
     private float now_price;
     private float old_price;
     private int amount;
-    private String title;
-    private String description;
     private Timestamp addtime;
+
+    public int getId() {
+        return id;
+    }
 
     public Timestamp getAddtime() {
         return addtime;
@@ -26,20 +28,16 @@ public class NoteBook {
         this.addtime = addtime;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
 
-    public int getVirtual_notebook_id() {
-        return virtual_notebook_id;
+    public String getTitle() {
+        return title;
     }
 
-    public void setVirtual_notebook_id(int virtual_notebook_id) {
-        this.virtual_notebook_id = virtual_notebook_id;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getColor() {
@@ -50,12 +48,12 @@ public class NoteBook {
         this.color = color;
     }
 
-    public String getVersion() {
-        return version;
+    public String getDescription() {
+        return description;
     }
 
-    public void setVersion(String version) {
-        this.version = version;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getImg_src() {
@@ -70,7 +68,7 @@ public class NoteBook {
         return now_price;
     }
 
-    public void setNow_price(float new_price) {
+    public void setNow_price(float now_price) {
         this.now_price = now_price;
     }
 
@@ -88,21 +86,5 @@ public class NoteBook {
 
     public void setAmount(int amount) {
         this.amount = amount;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

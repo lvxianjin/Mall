@@ -1,8 +1,6 @@
 package com.qdlg.service.impl;
 
-import com.qdlg.model.NoteBook;
-import com.qdlg.model.Phone;
-import com.qdlg.model.TV;
+import com.qdlg.model.*;
 import com.qdlg.mybatis.GoodsListDao;
 import com.qdlg.service.GoodsListService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +28,15 @@ public class GoodsListServiceImpl implements GoodsListService {
     @Override
     public List<TV> getTVList() {
         return this.dao.getTVList();
+    }
+
+    @Override
+    public List<Part> getPartList() {
+        return this.dao.getPartList();
+    }
+
+    @Override
+    public List<NewGoods> getNewGoodsList() {
+        return this.dao.getNewGoodsList();
     }
 }

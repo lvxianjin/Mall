@@ -1,8 +1,6 @@
 package com.qdlg.service;
 
-import com.qdlg.model.NoteBook;
-import com.qdlg.model.Phone;
-import com.qdlg.model.TV;
+import com.qdlg.model.*;
 
 import java.util.List;
 
@@ -16,4 +14,8 @@ public interface GoodsListService {
     List<NoteBook> getNoteBookList();
     //获取电视列表
     List<TV> getTVList();
+    //获取配件列表
+    List<Part> getPartList();
+    //获取新品列表
+    List<NewGoods> getNewGoodsList();
 }

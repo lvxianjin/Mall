@@ -1,5 +1,7 @@
 package com.qdlg.model;
 
+import java.sql.Timestamp;
+
 /**
  * Created by 10184 on 2017/12/26.
  */
@@ -15,6 +17,15 @@ public class Phone {
     private int amount;
     private String title;
     private String description;
+    private Timestamp addtime;
+
+    public Timestamp getAddtime() {
+        return addtime;
+    }
+
+    public void setAddtime(Timestamp addtime) {
+        this.addtime = addtime;
+    }
 
     public float getNow_price() {
         return now_price;
