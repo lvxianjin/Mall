@@ -19,6 +19,14 @@
     <select id="getPhoneList" resultMap="phoneList">
         select * from actual_phone where 1=1 order by addtime desc
     </select>
+    <select id="getPhoneListByTitle" parameterType="java.lang.String" resultMap="phoneList">
+        select * from actual_phone
+        <where>
+            <if test="title != null and !&quot;&quot;.equals(title.trim())">
+                title like '%' #{title} '%'
+            </if>
+        </where>
+    </select>
     <resultMap id="notebookList" type="com.qdlg.model.NoteBook">
         <!--执行sql语句返回的结果集与实体类对应-->
         <id column="id" jdbcType="INTEGER" property="id"></id>
@@ -36,6 +44,14 @@
     <select id="getNoteBookList" resultMap="notebookList">
         select * from actual_notebook where 1=1 order by addtime desc
     </select>
+    <select id="getNoteBookListByTitle" parameterType="java.lang.String" resultMap="notebookList">
+        select * from actual_notebook
+        <where>
+            <if test="title != null and !&quot;&quot;.equals(title.trim())">
+                title like '%' #{title} '%'
+            </if>
+        </where>
+    </select>
     <resultMap id="tvList" type="com.qdlg.model.TV">
         <!--执行sql语句返回的结果集与实体类对应-->
         <id column="id" jdbcType="INTEGER" property="id"></id>
@@ -51,9 +67,16 @@
         <result column="description" jdbcType="VARCHAR" property="description"></result>
         <result column="addtime" jdbcType="TIMESTAMP" property="addtime"></result>
     </resultMap>
-
     <select id="getTVList" resultMap="tvList">
         select * from actual_tv where 1=1 order by addtime desc
+    </select>
+    <select id="getTVListByTitle" parameterType="java.lang.String" resultMap="tvList">
+        select * from actual_tv
+        <where>
+            <if test="title != null and !&quot;&quot;.equals(title.trim())">
+                title like '%' #{title} '%'
+            </if>
+        </where>
     </select>
     <resultMap id="partList" type="com.qdlg.model.Part">
         <!--执行sql语句返回的结果集与实体类对应-->
@@ -69,6 +92,14 @@
     </resultMap>
     <select id="getPartList" resultMap="partList">
         select * from part where 1=1 order by addtime desc
+    </select>
+    <select id="getPartListByTitle" parameterType="java.lang.String" resultMap="partList">
+        select * from part
+        <where>
+            <if test="title != null and !&quot;&quot;.equals(title.trim())">
+                title like '%' #{title} '%'
+            </if>
+        </where>
     </select>
     <resultMap id="newgoodsList" type="com.qdlg.model.NewGoods">
         <!--执行sql语句返回的结果集与实体类对应-->

@@ -30,8 +30,8 @@
         </div>
 
         <div class="search-ctn">
-            <form class="search-form" method="GET" action="<%=path%>/search.html">
-                <input class="search-input" placeholder="搜索" type="text"><input class="search-submit" type="submit" value="&#xe616;">
+            <form class="search-form" method="GET" target="_blank" action="<%=path%>/search.html">
+                <input class="search-input" placeholder="搜索" type="text" name="title"><input class="search-submit" type="submit" value="&#xe616;">
             </form>
         </div>
 
@@ -55,7 +55,7 @@
                         <li class="li-base user-space-li-item"><a class="a-base a-user-space" href="order">我的订单</a></li>
                         <li class="li-base user-space-li-item"><a class="a-base a-user-space" href="portal">个人中心</a></li>
                         <li class="li-base li-line"></li>
-                        <li class="li-base user-space-li-item"><a class="a-base a-user-space" href="exit">退出</a></li>
+                        <li class="li-base user-space-li-item"><a class="a-base a-user-space" href="<%=path%>/exit.html">退出</a></li>
                     </ul>
                 </div>
         </div>
@@ -95,7 +95,7 @@
                         <!-- 插入数据 -->
                         <c:forEach begin="0" end="8" var="phone" items="${phoneList}">
                             <li class="li-base li-item">
-                                <img class="img-item" src="<%=basePath%>/images/phone/${phone.img_src}"/><a class="a-base a-item" href="buy.html?goods_id=${phone.id}">${phone.title}</a>
+                                <img class="img-item" src="<%=basePath%>/images/phone/${phone.img_src}"/><a class="a-base a-item" href="/buy.html?goods_id=${phone.id}">${phone.title}</a>
                             </li>
                         </c:forEach>
                     </ul>

@@ -14,18 +14,25 @@ import javax.servlet.http.HttpServletResponse;
  * Created by 10184 on 2017/12/26.
  */
 @Controller
-@SessionAttributes(value={"phoneList","notebookList","tvList","partList","newgoodsList"})
-
 public class GoodsListController {
     @Autowired
     private GoodsListService service =null;
     @RequestMapping("index.html")
-    public String getPhoneList(Model model){
+    public String getGoodsList(Model model){
         model.addAttribute("phoneList",this.service.getPhoneList());
         model.addAttribute("notebookList",this.service.getNoteBookList());
         model.addAttribute("tvList",this.service.getTVList());
         model.addAttribute("partList",this.service.getPartList());
         model.addAttribute("newgoodsList",this.service.getNewGoodsList());
         return "index";
+    }
+    @RequestMapping("search.html")
+    public String getGoodsListByTitle(HttpServletRequest request,HttpServletResponse response){
+        String title = request.getParameter("title");
+        request.setAttribute("phoneListByTitle",this.service.getPhoneListByTitle());
+        request.setAttribute("notebookListByTitle",this.service.getNoteBookListByTitle());
+        request.setAttribute("tvListByTitle",this.service.getTVListByTitle());
+        request.setAttribute("partListByTitle",this.service.getPartListByTitle());
+        return "search";
     }
 }

@@ -39,4 +39,24 @@ public class GoodsListServiceImpl implements GoodsListService {
     public List<NewGoods> getNewGoodsList() {
         return this.dao.getNewGoodsList();
     }
+
+    @Override
+    public List<Phone> getPhoneListByTitle() {
+        return this.dao.getPhoneListByTitle();
+    }
+
+    @Override
+    public List<NoteBook> getNoteBookListByTitle() {
+        return this.dao.getNoteBookListByTitle();
+    }
+
+    @Override
+    public List<TV> getTVListByTitle() {
+        return this.dao.getTVListByTitle();
+    }
+
+    @Override
+    public List<Part> getPartListByTitle() {
+        return this.dao.getPartListByTitle();
+    }
 }

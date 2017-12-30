@@ -18,4 +18,12 @@ public interface GoodsListService {
     List<Part> getPartList();
     //获取新品列表
     List<NewGoods> getNewGoodsList();
+    //通过名称获取手机列表
+    List<Phone> getPhoneListByTitle ();
+    //通过名称获取笔记本列表
+    List<NoteBook> getNoteBookListByTitle();
+    //通过名称获取电视列表
+    List<TV> getTVListByTitle();
+    //通过名称获取配件列表
+    List<Part> getPartListByTitle();
 }

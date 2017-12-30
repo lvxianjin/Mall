@@ -10,6 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
@@ -22,7 +26,6 @@ import java.util.Map;
  *  当一个请求结束后，数据就失效了。如果要跨页面使用。
  *  那么需要使用到session。而@SessionAttributes注解就可以使得模型中的数据存储一份到session域中。
  */
-@SessionAttributes(value={"userinfo"})
 public class LoginController {
     @Autowired
     private LoginService service=null;
@@ -32,23 +35,31 @@ public class LoginController {
         return "login";
     }
     @RequestMapping("load.html")
-    public String checkUser(Login view, Model model){
-
-        String path="login";
+    public void checkUser(Login view,HttpServletRequest request,HttpServletResponse response){
+       HttpSession session = request.getSession();
         try {
             Map<String,Object> dto= BeanUtils.describe(view);
             User user = this.service.checkUser(dto);
             if(user.getNick_name()!=null&&user.getNick_name()!=""){
-                model.addAttribute("Userinfo",user);
-                path = "index";
+                session.setAttribute("Userinfo",user);
+                response.sendRedirect("index.html");
             }
             else
             {
-                path = "index1";
+                response.sendRedirect("login.html");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return path;
+    }
+    @RequestMapping("exit.html")
+    public void exit(HttpServletResponse response, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.removeAttribute("Userinfo");
+        try {
+            response.sendRedirect("index.html");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
