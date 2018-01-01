@@ -95,7 +95,7 @@
                         <!-- 插入数据 -->
                         <c:forEach begin="0" end="8" var="phone" items="${phoneList}">
                             <li class="li-base li-item">
-                                <img class="img-item" src="<%=basePath%>/images/phone/${phone.img_src}"/><a class="a-base a-item" href="/buy.html?goods_id=${phone.id}">${phone.title}</a>
+                                <img class="img-item" src="<%=basePath%>/images/phone/${phone.img_src}"/><a class="a-base a-item" href="buy.html?goods_id=${phone.id}&type=phone">${phone.title}</a>
                             </li>
                         </c:forEach>
                     </ul>
@@ -106,7 +106,7 @@
                             <!-- 插入数据 -->
                         <c:forEach begin="0" end="8" var="notebook" items="${notebookList}">
                             <li class="li-base li-item">
-                                <img class="img-item" src="<%=basePath%>/images/notebook/${notebook.img_src}"/><a class="a-base a-item" href="buy.html?goods_id=${notebook.id}">${notebook.title}</a>
+                                <img class="img-item" src="<%=basePath%>/images/notebook/${notebook.img_src}"/><a class="a-base a-item" href="buy.html?goods_id=${notebook.id}&type=notebook">${notebook.title}</a>
                             </li>
                         </c:forEach>
                     </ul>
@@ -116,7 +116,7 @@
                             <!-- 插入数据 -->
                         <c:forEach begin="0" end="8" var="tv" items="${tvList}">
                             <li class="li-base li-item">
-                                <img class="img-item" src="<%=basePath%>/images/notebook/${tv.img_src}"/><a class="a-base a-item" href="buy.html?goods_id=${tv.id}">${tv.title}</a>
+                                <img class="img-item" src="<%=basePath%>/images/notebook/${tv.img_src}"/><a class="a-base a-item" href="buy.html?goods_id=${tv.id}&type=tv">${tv.title}</a>
                             </li>
                         </c:forEach>
                         </ul>
@@ -127,7 +127,7 @@
                         <!-- 插入数据 -->
                         <c:forEach begin="0" end="8" var="part" items="${partList}">
                             <li class="li-base li-item">
-                                <img class="img-item" src="<%=basePath%>/images/notebook/${part.img_src}"/><a class="a-base a-item" href="buy.html?goods_id=${part.id}">${part.title}</a>
+                                <img class="img-item" src="<%=basePath%>/images/notebook/${part.img_src}"/><a class="a-base a-item" href="buy.html?goods_id=${part.id}&type=part">${part.title}</a>
                             </li>
                         </c:forEach>
                     </ul>
@@ -186,8 +186,8 @@
                                 <span class="slogan-dazhe">打折</span>
                             </c:if>
                         </div>
-                        <a href="buy.html?goods_id=${phone.id}"><img class="img-goods-item" src="<%=basePath%>/images/phone/${phone.img_src}"></a>
-                        <br><a class="a-base" href="buy.html?goods_id=${phone.id}"><span class="goods-title">${phone.title}</span></a>
+                        <a href="buy.html?goods_id=${phone.id}&type=phone"><img class="img-goods-item" src="<%=basePath%>/images/phone/${phone.img_src}"></a>
+                        <br><a class="a-base" href="buy.html?goods_id=${phone.id}&type=phone"><span class="goods-title">${phone.title}</span></a>
                         <br><span class="goods-descp">${phone.description}</span>
                         <br><span class="now-price">${phone.now_price}</span>
                         <span class="old-price">${phone.old_price}</span>
@@ -223,8 +223,8 @@
                                 <span class="slogan-dazhe">打折</span>
                             </c:if>
                         </div>
-                        <a href="buy.html?goods_id=${notebook.id}"><img class="img-goods-item" src="<%=basePath%>/images/notebook/${notebook.img_src}"></a>
-                        <br><a class="a-base" href="buy.html?goods_id=${notebook.id}"><span class="goods-title">${notebook.title}</span></a>
+                        <a href="buy.html?goods_id=${notebook.id}&type=notebook"><img class="img-goods-item" src="<%=basePath%>/images/notebook/${notebook.img_src}"></a>
+                        <br><a class="a-base" href="buy.html?goods_id=${notebook.id}&type=notebook"><span class="goods-title">${notebook.title}</span></a>
                         <br><span class="goods-descp">${notebook.description}</span>
                         <br><span class="now-price">${notebook.now_price}</span>
                         <span class="old-price">${notebook.old_price}</span>
@@ -235,7 +235,7 @@
                 <div class="items-block items-block-more">
                     <img class="img-more" src="<%=basePath%>/images/notebook/notebook-enter.jpg">
                     <div class="span-more">
-                        <a class="a-base" href="notebooks">
+                        <a class="a-base" href="more.html">
                             <span class="span1">浏览更多</span>
                             <span class="span2">笔记本</span>
                         </a>
@@ -260,8 +260,8 @@
                                 <span class="slogan-dazhe">打折</span>
                             </c:if>
                         </div>
-                        <a href="buy.html?goods_id=${tv.id}"><img class="img-goods-item" src="<%=basePath%>/images/tv/${tv.img_src}"></a>
-                        <br><a class="a-base" href="buy.html?goods_id=${tv.id}"><span class="goods-title">${tv.title}</span></a>
+                        <a href="buy.html?goods_id=${tv.id}&type=tv"><img class="img-goods-item" src="<%=basePath%>/images/tv/${tv.img_src}"></a>
+                        <br><a class="a-base" href="buy.html?goods_id=${tv.id}&type=tv"><span class="goods-title">${tv.title}</span></a>
                         <br><span class="goods-descp">${tv.description}</span>
                         <br><span class="now-price">${tv.now_price}</span>
                         <span class="old-price">${tv.old_price}</span>
@@ -272,7 +272,7 @@
                 <div class="items-block items-block-more">
                     <img class="img-more" src="<%=basePath%>/images/tv/tv-enter.png">
                     <div class="span-more">
-                        <a class="a-base" href="tvs">
+                        <a class="a-base" href="more.html">
                             <span class="span1">浏览更多</span>
                             <span class="span2">电视</span>
                         </a>
@@ -297,8 +297,8 @@
                                 <span class="slogan-dazhe">打折</span>
                             </c:if>
                         </div>
-                        <a href="buy.html?goods_id=${part.id}"><img class="img-goods-item" src="<%=basePath%>/images/part/${part.img_src}"></a>
-                        <br><a class="a-base" href="buy.html?goods_id=${part.id}"><span class="goods-title">${part.title}</span></a>
+                        <a href="buy.html?goods_id=${part.id}&type=part"><img class="img-goods-item" src="<%=basePath%>/images/part/${part.img_src}"></a>
+                        <br><a class="a-base" href="buy.html?goods_id=${part.id}&type=part"><span class="goods-title">${part.title}</span></a>
                         <br><span class="goods-descp">${part.description}</span>
                         <br><span class="now-price">${part.now_price}</span>
                         <span class="old-price">${part.old_price}</span>
@@ -309,7 +309,7 @@
                 <div class="items-block items-block-more">
                     <img class="img-more" src="<%=basePath%>/images/part/part-enter.jpg">
                     <div class="span-more">
-                        <a class="a-base" href="parts">
+                        <a class="a-base" href="/more.html">
                             <span class="span1">浏览更多</span>
                             <span class="span2">配件</span>
                         </a>

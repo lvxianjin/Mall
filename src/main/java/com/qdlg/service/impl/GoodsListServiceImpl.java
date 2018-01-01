@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 10184 on 2017/12/26.
@@ -16,17 +17,17 @@ public class GoodsListServiceImpl implements GoodsListService {
     @Autowired
     private GoodsListDao dao =null;
     @Override
-    public List<Phone> getPhoneList() {
+    public List<Map<String,Object>> getPhoneList() {
             return this.dao.getPhoneList();
     }
 
     @Override
-    public List<NoteBook> getNoteBookList() {
+    public List<Map<String,Object>> getNoteBookList() {
         return this.dao.getNoteBookList();
     }
 
     @Override
-    public List<TV> getTVList() {
+    public List<Map<String,Object>> getTVList() {
         return this.dao.getTVList();
     }
 
@@ -41,22 +42,42 @@ public class GoodsListServiceImpl implements GoodsListService {
     }
 
     @Override
-    public List<Phone> getPhoneListByTitle() {
-        return this.dao.getPhoneListByTitle();
+    public List<Phone> getPhoneListByTitle(String title) {
+        return this.dao.getPhoneListByTitle(title);
     }
 
     @Override
-    public List<NoteBook> getNoteBookListByTitle() {
-        return this.dao.getNoteBookListByTitle();
+    public List<NoteBook> getNoteBookListByTitle(String title) {
+        return this.dao.getNoteBookListByTitle(title);
     }
 
     @Override
-    public List<TV> getTVListByTitle() {
-        return this.dao.getTVListByTitle();
+    public List<TV> getTVListByTitle(String title) {
+        return this.dao.getTVListByTitle(title);
     }
 
     @Override
-    public List<Part> getPartListByTitle() {
-        return this.dao.getPartListByTitle();
+    public List<Part> getPartListByTitle(String title) {
+        return this.dao.getPartListByTitle(title);
+    }
+
+    @Override
+    public List<Map<String,Object>> getPhoneListById(int id) {
+        return this.dao.getPhoneListById(id);
+    }
+
+    @Override
+    public List<Map<String,Object>> getNoteBookListById(int id) {
+        return this.dao.getNoteBookListById(id);
+    }
+
+    @Override
+    public List<Map<String,Object>> getTVListById(int id) {
+        return this.dao.getTVListById(id);
+    }
+
+    @Override
+    public Part getPartListById(int id) {
+        return this.dao.getPartListById(id);
     }
 }

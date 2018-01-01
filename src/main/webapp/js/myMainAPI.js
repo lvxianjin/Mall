@@ -2,7 +2,9 @@ Function.prototype.method = function(name,fn){
 	this.prototype[name] = fn;
 	return this;
 };
-//version 1.4.2
+//version 1.4.3
+//修改  || this.element.length === 0
+//修改 $().move
 //$('<li>' | '.a').replaceChildNode(newNode,oldNode,number).removeSelfNode(numberA,numberB_?).addEvent('click',fn,true_?,nember_?).removeEvent('click',fn,true_?,nember_?).setAttr('innerHTML','aaa',number_?).getAttr('innerHTML',number_?).setStyle('color','red',number_?).removeSelf(numberA,numberB_?);
 //$('#a' | element).removeChildNode(node|number).appendChildNode(Node,number_?).replaceChildNode(node,child).removeSelfNode().addEvent('click',fn,true_?).removeEvent('click',fn,true_?).setAttr('innerHTML','aaa').getAttr('innerHTML').setStyle('color','red');
 var installHelper = (function(){
@@ -49,7 +51,7 @@ var installHelper = (function(){
 	}
 	
 	function on(type,fn,opt){//{useCapture:false,index:undefined}
-		if(this.element === null){
+		if(this.element === null || this.element.length === 0){
 			if(_$.log){
 				console.log('function addEvent: this.element is null.');
 				throw new Error();
@@ -87,7 +89,7 @@ var installHelper = (function(){
 		return this;
 	}
 	function off(type,opt){
-		if(this.element === null){
+		if(this.element === null || this.element.length === 0){
 			if(_$.log)
 				console.log('function removeEvent: this.element is null.');
 			return this;
@@ -129,7 +131,7 @@ var installHelper = (function(){
 		return this;
 	}
 	function setAttr(prop,val,index){
-		if(this.element === null){
+		if(this.element === null || this.element.length === 0){
 			if(_$.log){
 				console.log('function setAttr: this.element is null.');
 				throw new Error();
@@ -178,7 +180,7 @@ var installHelper = (function(){
 		return this;
 	}
 	function getAttr(prop,index){
-		if(this.element === null){
+		if(this.element === null || this.element.length === 0){
 			if(_$.log){
 				console.log('function getAttr: this.element is null.');
 				throw new Error();
@@ -240,7 +242,7 @@ var installHelper = (function(){
 		}
 	}	
 	function setStyle(prop,value,index){
-		if(this.element === null){
+		if(this.element === null || this.element.length === 0){
 			if(_$.log)
 				console.log('function setStyle: this.element is null.');
 			return this;
@@ -284,7 +286,7 @@ var installHelper = (function(){
 		return this;
 	}
 	function getStyle(prop,index){
-		if(this.element === null){
+		if(this.element === null || this.element.length === 0){
 			if(_$.log)
 				console.log('function setStyle: this.element is null.');
 			return this;
@@ -389,7 +391,7 @@ var installHelper = (function(){
 		return this;
 	}
 	function getOriAttr(attr,index){
-		if(this.element === null){
+		if(this.element === null || this.element.length === 0){
 			if(_$.log){
 				console.log('function setStyle: this.element is null.');
 				throw new Error();
@@ -449,7 +451,7 @@ var installHelper = (function(){
 		}
 	}
 	function append(node,opt){//opt:{before:node|index,index(for HTMLCollection):2}		
-		if(this.element === null){
+		if(this.element === null || this.element.length === 0){
 			if(_$.log)
 				console.log('function append: this.element is null.');
 			return this;
@@ -516,7 +518,7 @@ var installHelper = (function(){
 		return this;
 	}
 	function appendTo(node,opt){
-		if(this.element === null){
+		if(this.element === null || this.element.length === 0){
 			if(_$.log)
 				console.log('function setAttr: this.element is null.');
 			return this;
@@ -534,7 +536,7 @@ var installHelper = (function(){
 		return this;
 	}
 	function removeChild(node){
-		if(this.element === null){
+		if(this.element === null || this.element.length === 0){
 			if(_$.log)
 				console.log('function removeChild: this.element is null.');
 			return this;
@@ -548,7 +550,7 @@ var installHelper = (function(){
 		return this;
 	} 
 	function replaceChild(newNode,oldNode){
-		if(this.element === null){
+		if(this.element === null || this.element.length === 0){
 			if(_$.log)
 				console.log('function replaceChild: this.element is null.');
 			return this;
@@ -566,7 +568,7 @@ var installHelper = (function(){
 		return this;
 	}
 	function removeSelf(opt){//{from: ,to: ,clean:true|false}
-		if(this.element === null){
+		if(this.element === null || this.element.length === 0){
 			if(_$.log)
 				console.log('function removeSelf: this.element is null.');
 			return this;
@@ -603,7 +605,7 @@ var installHelper = (function(){
 		return this;
 	}
 	function clean(){
-		if(this.element === null){
+		if(this.element === null || this.element.length === 0){
 			if(_$.log)
 				console.log('function removeSelf: this.element is null.');
 			return this;
@@ -614,7 +616,7 @@ var installHelper = (function(){
 		return this;
 	}
 	function index(arg){//node|_$ -> index  index ->-$
-		if(this.element === null){
+		if(this.element === null || this.element.length === 0){
 			if(_$.log)
 				console.log('function removeSelf: this.element is null.');
 			return this;
@@ -1110,7 +1112,7 @@ var installHelper = (function(){
 		temp.width = opt.width ? ('width:'+opt.width+'px;' ):'';
 		temp.padding = opt.padding ? ('padding:'+opt.padding+';'):'';
 		temp.border = 'border:'+(opt.border ? opt.border:'1px solid black')+';';
-		temp.borderRadius = 'border-radius:'+(opt.borderRadius ? opt.borderRadius:'3px')+';';
+		temp.borderRadius = 'border-radius:'+(opt.borderRadius ? opt.borderRadius:'0px')+';';
 		$.create('<div style="position:absolute;'+temp.left+temp.top+temp.color+temp.background+temp.fontSize+temp.lineHeight+temp.height+temp.width+temp.padding+temp.border+temp.borderRadius+'">'+temp.tip+'</div>')
 		.appendTo($('<body>'),{index: 0}).fade(temp.last,temp.die,'deep');
 	}

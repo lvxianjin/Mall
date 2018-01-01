@@ -21,28 +21,27 @@ import java.util.Map;
  * Created by 10184 on 2017/12/25.
  */
 @Controller
-/**
- *  默认情况下Spring MVC将模型中的数据存储到request域中。
- *  当一个请求结束后，数据就失效了。如果要跨页面使用。
- *  那么需要使用到session。而@SessionAttributes注解就可以使得模型中的数据存储一份到session域中。
- */
 public class LoginController {
     @Autowired
     private LoginService service=null;
+    //进入登录界面
     @RequestMapping("login.html")
-    public String openWindow()
+    public String openWindow(HttpServletRequest request)
     {
+        String pathFrom = request.getHeader("Referer");
+        request.setAttribute("pathFrom",pathFrom);
         return "login";
     }
     @RequestMapping("load.html")
     public void checkUser(Login view,HttpServletRequest request,HttpServletResponse response){
-       HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
+        String pageFrom = request.getParameter("pageFrom").substring(0,request.getParameter("pageFrom").length()-1);;
         try {
             Map<String,Object> dto= BeanUtils.describe(view);
             User user = this.service.checkUser(dto);
             if(user.getNick_name()!=null&&user.getNick_name()!=""){
                 session.setAttribute("Userinfo",user);
-                response.sendRedirect("index.html");
+                response.sendRedirect(pageFrom);
             }
             else
             {

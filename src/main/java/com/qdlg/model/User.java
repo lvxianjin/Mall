@@ -10,6 +10,15 @@ public class User {
     private String email;
     private String phone;
     private String nick_name;
+    private String address;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public int getId() {
         return id;

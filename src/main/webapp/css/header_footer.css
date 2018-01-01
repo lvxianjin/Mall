@@ -42,7 +42,7 @@
 
 @font-face{
     font-family: 'iconfont';
-    src: url(iconfont.ttf);
+    src: url('iconfont.ttf') format('truetype');
 }
 
 .search-input{
@@ -124,7 +124,8 @@
     width: 100px;
     height: 131px;
     border-radius: 3px;
-    border: 1px solid rgb(200, 200, 200);;
+    border: 1px solid rgb(200, 200, 200);
+    z-index: 9998;
 }
 .user-space-li-item{
     font-size: 16px;
