@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.qdlg.mybatis.GoodsParameterDao">
+    <select id="getPhoneParameterById" parameterType="java.lang.Integer" resultType="com.qdlg.model.V_Phone">
+        select * from virtual_phone where id=#{id}
+    </select>
+    <select id="getNoteBooksParameterById" parameterType="java.lang.Integer" resultType="com.qdlg.model.V_NoteBook">
+        select * from virtual_notebook where id=#{id}
+    </select>
+    <select id="getTVParameterById" parameterType="java.lang.Integer" resultType="com.qdlg.model.V_TV">
+        select * from virtual_tv where id=#{id}
+    </select>
+</mapper>

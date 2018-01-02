@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.qdlg.mybatis.EvaluateDao">
+    <select id="getGoodsEvaluate" parameterType="com.qdlg.model.Evaluate" resultType="java.util.Map">
+        select e.addtime,e.score,e.text,u.nick_name from user u,evaluation e
+        <where>
+            u.id=e.user_id
+            <if test="id != 0">
+                and u.id=#{id}
+            </if>
+            <if test="type != null and !&quot;&quot;.equals(type.trim())">
+                and type=#{type}
+            </if>
+        </where>
+    </select>
+</mapper>

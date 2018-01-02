@@ -4,8 +4,9 @@ import java.util.*;
 
 /**
  * Created by 10184 on 2017/12/31.
+ * 主要为获取GoodsList服务
  */
-public class Tool {
+public class GoodsListTool {
     //去掉重复的id
     public List<Map<String,Object>> getDistinctGoodsList(List<Map<String,Object>> input){
         Iterator<Map<String,Object>> it1 = input.iterator();
@@ -13,16 +14,13 @@ public class Tool {
 
         while(it1.hasNext()){
             Map<String,Object> e = it1.next();
-            System.out.println(e.get("id"));
+            //System.out.println(e.get("id"));
             if(!ids.contains(e.get("id"))){
                 ids.add(e.get("id"));
-
             }
         }
-
         List<Map<String,Object>> output = new ArrayList<Map<String,Object>>();
         Iterator<Object> it2 = ids.iterator();
-
         while(it2.hasNext()){
             Map<String,Object> line = new HashMap<String,Object>();
             Iterator<Map<String,Object>> it3 = input.iterator();
@@ -31,10 +29,8 @@ public class Tool {
             Object img_src = null;
             Object title = null;
             Object des = null;
-
             while(it3.hasNext()){
                 Map<String,Object> e = it3.next();
-
                 if(((float)e.get("now_price")) < minus && id == e.get("id")){
                     minus = (float)e.get("now_price");
                     img_src = e.get("img_src");
@@ -56,7 +52,6 @@ public class Tool {
             //System.out.println();
             output.add(line);
         }
-
         return output;
     }
 }

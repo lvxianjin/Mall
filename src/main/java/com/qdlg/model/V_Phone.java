@@ -10,8 +10,6 @@ public class V_Phone {
     public String resolution_ratio;
     public String cpu;
     public String gpu;
-    public String rom;
-    public String ram;
     public String front_camera;
     public String back_camera;
     public String battery_capacity;
@@ -19,6 +17,24 @@ public class V_Phone {
     public String weight;
     public String network;
     public String os;
+    public String memory;
+
+    public String getMemory() {
+        return memory;
+    }
+
+    public void setMemory(String memory) {
+        this.memory = memory;
+    }
+
+    public String description;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getOs() {
         return os;
@@ -76,21 +92,6 @@ public class V_Phone {
         this.gpu = gpu;
     }
 
-    public String getRom() {
-        return rom;
-    }
-
-    public void setRom(String rom) {
-        this.rom = rom;
-    }
-
-    public String getRam() {
-        return ram;
-    }
-
-    public void setRam(String ram) {
-        this.ram = ram;
-    }
 
     public String getFront_camera() {
         return front_camera;

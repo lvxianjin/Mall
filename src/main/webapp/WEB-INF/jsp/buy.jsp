@@ -113,20 +113,20 @@
                 <c:if test="${type eq 'phone'}">
                     <div class="actual-choose">
                         <h3 class="choose-title">选择颜色</h3>
-                        <c:forEach items="${GoodsInfo}" var="goods">
-                            <div class="choose-value choose-value0" data='{"index": 0, "field": "color"}'>${goods.color}</div>
+                        <c:forEach items="${ColorList}" var="color">
+                            <div class="choose-value choose-value0" data='{"index": 0, "field": "color"}'>${color}</div>
                         </c:forEach>
                     </div>
                     <div class="actual-choose">
                         <h3 class="choose-title">选择RAM</h3>
-                        <c:forEach items="${GoodsInfo}" var="goods">
-                            <div class="choose-value choose-value0" data='{"index": 0, "field": "color"}'>${goods.ram}</div>
+                        <c:forEach items="${RamList}" var="ram">
+                            <div class="choose-value choose-value0" data='{"index": 0, "field": "color"}'>${ram}</div>
                         </c:forEach>
                     </div>
                     <div class="actual-choose">
                         <h3 class="choose-title">选择ROM</h3>
-                        <c:forEach items="${GoodsInfo}" var="goods">
-                            <div class="choose-value choose-value0" data='{"index": 0, "field": "color"}'>${goods.rom}</div>
+                        <c:forEach items="${RomList}" var="rom">
+                            <div class="choose-value choose-value0" data='{"index": 0, "field": "color"}'>${rom}</div>
                         </c:forEach>
                     </div>
                 </c:if>
@@ -177,32 +177,32 @@
             <div class="parameter-block">
                 <span class="span-parameter span-parameter-l">分辨率</span>
                 <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r"><!-- 插入数据-分辨率--></span>
+                <span class="span-parameter span-parameter-r">${GoodsParameter.resolution_ratio}</span>
             </div>
             <div class="parameter-block">
                 <span class="span-parameter span-parameter-l">屏幕尺寸</span>
                 <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r"><!-- 插入数据-屏幕尺寸--></span>
+                <span class="span-parameter span-parameter-r">${GoodsParameter.screen_size}</span>
             </div>
             <div class="parameter-block">
                 <span class="span-parameter span-parameter-l">CPU</span>
                 <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r"><!-- 插入数据--></span>
+                <span class="span-parameter span-parameter-r">${GoodsParameter.cpu}</span>
             </div>
             <div class="parameter-block">
                 <span class="span-parameter span-parameter-l">GPU</span>
                 <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r"><!-- 插入数据--></span>
+                <span class="span-parameter span-parameter-r">${GoodsParameter.gpu}</span>
             </div>
             <div class="parameter-block">
-                <span class="span-parameter span-parameter-l">机身存储</span>
+                <span class="span-parameter span-parameter-l">网络</span>
                 <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r"><!-- 插入数据-rom--></span>
+                <span class="span-parameter span-parameter-r">${GoodsParameter.network}</span>
             </div>
             <div class="parameter-block">
-                <span class="span-parameter span-parameter-l">运行内存</span>
+                <span class="span-parameter span-parameter-l">内存</span>
                 <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r"><!-- 插入数据-ram--></span>
+                <span class="span-parameter span-parameter-r">${GoodsParameter.memory}</span>
             </div>
         </div>
 
@@ -211,32 +211,32 @@
             <div class="parameter-block">
                 <span class="span-parameter span-parameter-l">前置摄像头</span>
                 <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r"><!-- 插入数据 --></span>
+                <span class="span-parameter span-parameter-r">${GoodsParameter.front_camera}</span>
             </div>
             <div class="parameter-block">
                 <span class="span-parameter span-parameter-l">后置摄像头</span>
                 <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r"><!-- 插入数据 --></span>
+                <span class="span-parameter span-parameter-r">${GoodsParameter.back_camera}</span>
             </div>
             <div class="parameter-block">
                 <span class="span-parameter span-parameter-l">电池容量</span>
                 <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r"><!-- 插入数据 --></span>
+                <span class="span-parameter span-parameter-r">${GoodsParameter.battery_capacity}</span>
             </div>
             <div class="parameter-block">
                 <span class="span-parameter span-parameter-l">尺寸</span>
                 <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r"><!-- 插入数据 --></span>
+                <span class="span-parameter span-parameter-r">${GoodsParameter.size}</span>
             </div>
             <div class="parameter-block">
                 <span class="span-parameter span-parameter-l">重量</span>
                 <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r"><!-- 插入数据 --></span>
+                <span class="span-parameter span-parameter-r">${GoodsParameter.weight}</span>
             </div>
             <div class="parameter-block">
                 <span class="span-parameter span-parameter-l">系统</span>
                 <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r"><!-- 插入数据 --></span>
+                <span class="span-parameter span-parameter-r">${GoodsParameter.os}</span>
             </div>
         </div>
     </section>
@@ -252,62 +252,30 @@
             <!-- 初始三条 -->
             <div class="base-eval-ctn">
                 <!-- 插入数据-循环 -->
-                <div class="eval-item">
-                    <div class="eval-line-remark">
-                        <span class="small-eval evaluation-user">用户ㆍ <!-- 插入数据 --></span>
-                        <span class="small-eval evaluation-time">时间ㆍ <!-- 插入数据 --></span>
-                        <span class="small-eval evaluation-score">评分ㆍ <!-- 插入数据 --></span>
+                <c:forEach items="${EvaluateInfo}" var="evaluate" begin="0" end="2">
+                    <div class="eval-item">
+                        <div class="eval-line-remark">
+                            <span class="small-eval evaluation-user">用户ㆍ ${evaluate['nick_name']}</span>
+                            <span class="small-eval evaluation-time">时间ㆍ ${evaluate["addtime"]}</span>
+                            <span class="small-eval evaluation-score">评分ㆍ${evaluate["score"]}</span>
+                        </div>
+                        <p class="evaluation-text">${evaluate[test]}</p>
                     </div>
-                    <p class="evaluation-text"><!-- 插入数据 评论--></p>
-                </div>
-
-
-                <div class="eval-item">
-                    <div class="eval-line-remark">
-                        <span class="small-eval evaluation-user">用户ㆍ FreePoix</span>
-                        <span class="small-eval evaluation-time">时间ㆍ 12.5.2017</span>
-                        <span class="small-eval evaluation-score">评分ㆍ 4.5</span>
-                    </div>
-                    <p class="evaluation-text">手机颜值高，照相不一般，重点是手机颜值高，照相不一般，重点是手机颜值高，照相不一般，重点是手机颜值高，照相不一般，重点是手机颜值高，照相不一般，重点是客户妹子觉得我们谁更帅。</p>
-                </div>
-                <div class="eval-item">
-                    <div class="eval-line-remark">
-                        <span class="small-eval evaluation-user">用户ㆍ FreePoix</span>
-                        <span class="small-eval evaluation-time">时间ㆍ 12.5.2017</span>
-                        <span class="small-eval evaluation-score">评分ㆍ 4.5</span>
-                    </div>
-                    <p class="evaluation-text">手机颜值高，照相不一般，重点是手机颜值高，照相不一般，重点是手机颜值高，照相不一般，重点是手机颜值高，照相不一般，重点是手机颜值高，照相不一般，重点是客户妹子觉得我们谁更帅。</p>
-                </div>
-            </div>
-
+                </c:forEach>
             <!-- 隐藏剩余三条 -->
             <div class="eval-hide" id="eval-hide">
                 <!-- 插入数据-循环 -->
-                <div class="eval-item">
-                    <div class="eval-line-remark">
-                        <span class="small-eval evaluation-user">用户ㆍ <!-- 插入数据 --></span>
-                        <span class="small-eval evaluation-time">时间ㆍ <!-- 插入数据 --></span>
-                        <span class="small-eval evaluation-score">评分ㆍ <!-- 插入数据 --></span>
+                <c:forEach items="${EvaluateInfo}" var="evaluate" begin="3" end="5">
+                    <div class="eval-item">
+                        <div class="eval-line-remark">
+                            <span class="small-eval evaluation-user">用户ㆍ ${evaluate["nick_name"]}</span>
+                            <span class="small-eval evaluation-time">时间ㆍ ${evaluate["addtime"]}</span>
+                            <span class="small-eval evaluation-score">评分ㆍ${evaluate["score"]}</span>
+                        </div>
+                        <p class="evaluation-text">${evaluate.test}</p>
                     </div>
-                    <p class="evaluation-text"><!-- 插入数据 评论--></p>
-                </div>
-                <!-- 静态可删
-                <div class="eval-item">
-                    <div class="eval-line-remark">
-                        <span class="small-eval evaluation-user">用户ㆍ FreePoix</span>
-                        <span class="small-eval evaluation-time">时间ㆍ 12.5.2017</span>
-                        <span class="small-eval evaluation-score">评分ㆍ 4.5</span>
-                    </div>
-                    <p class="evaluation-text">手机颜值高，照相不一般，重点是手机颜值高，照相不一般，重点是手机颜值高，照相不一般，重点是手机颜值高，照相不一般，重点是手机颜值高，照相不一般，重点是客户妹子觉得我们谁更帅。</p>
-                </div>
-                <div class="eval-item">
-                    <div class="eval-line-remark">
-                        <span class="small-eval evaluation-user">用户ㆍ FreePoix</span>
-                        <span class="small-eval evaluation-time">时间ㆍ 12.5.2017</span>
-                        <span class="small-eval evaluation-score">评分ㆍ 4.5</span>
-                    </div>
-                    <p class="evaluation-text">手机颜值高，照相不一般，重点是手机颜值高，照相不一般，重点是手机颜值高，照相不一般，重点是手机颜值高，照相不一般，重点是手机颜值高，照相不一般，重点是客户妹子觉得我们谁更帅。</p>
-                </div> -->
+                </c:forEach>
+
                 <div class="eval-item page-change-ctn">
                     <div class="center-ctrl">
                         <a class="a-base page-back" id="last-page" href="">上一页</a>

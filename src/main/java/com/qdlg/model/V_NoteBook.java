@@ -16,6 +16,15 @@ public class V_NoteBook {
     public String camera;
     public String inteface;
     public String battery_capacity;
+    public String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public int getId() {
         return id;

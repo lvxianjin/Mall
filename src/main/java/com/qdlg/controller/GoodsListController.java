@@ -1,12 +1,11 @@
 package com.qdlg.controller;
 
 import com.qdlg.service.GoodsListService;
-import com.qdlg.tool.Tool;
+import com.qdlg.tool.GoodsListTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +19,7 @@ public class GoodsListController {
     private GoodsListService service =null;
     @RequestMapping("index.html")
     public String getGoodsList(Model model) throws Exception{
-        Tool tool = new Tool();
+        GoodsListTool tool = new GoodsListTool();
         model.addAttribute("phoneList",tool.getDistinctGoodsList(this.service.getPhoneList()));
         model.addAttribute("notebookList",tool.getDistinctGoodsList(this.service.getNoteBookList()));
         model.addAttribute("tvList",tool.getDistinctGoodsList(this.service.getTVList()));

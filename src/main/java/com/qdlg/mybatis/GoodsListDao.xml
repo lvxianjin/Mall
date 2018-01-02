@@ -4,7 +4,7 @@
 
     <select id="getPhoneList" resultType="java.util.Map">
         select v.id,v.title,a.img_src,a.now_price,v.description from actual_phone a,virtual_phone v
-        where a.virtual_phone_id=v.id
+        where a.virtual_phone_id=v.id order by addtime desc
     </select>
     <select id="getPhoneListById" parameterType="java.lang.Integer" resultType="java.util.Map">
         select title,color,ram,rom,img_src,now_price,description from actual_phone a,virtual_phone v
@@ -21,7 +21,7 @@
 
     <select id="getNoteBookList" resultType="java.util.Map">
         select v.id,v.title,a.img_src,a.now_price,v.description from actual_notebook a,virtual_notebook v
-        where a.virtual_notebook_id=v.id
+        where a.virtual_notebook_id=v.id order by addtime desc
     </select>
     <select id="getNoteBookListById" parameterType="java.lang.Integer" resultType="java.util.Map">
         select title,color,version,img_src,now_price,description from actual_notebook a,virtual_notebook v
@@ -38,7 +38,7 @@
 
     <select id="getTVList" resultType="java.util.Map">
         select v.id,v.title,a.img_src,a.now_price,v.description from actual_tv a,virtual_tv v
-        where a.virtual_tv_id=v.id
+        where a.virtual_tv_id=v.id order by addtime desc
     </select>
     <select id="getTVListById" parameterType="java.lang.Integer" resultType="java.util.Map">
         select title,color,version,img_src,now_price,description from actual_tv a,virtual_tv v
