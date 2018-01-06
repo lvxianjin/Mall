@@ -3,81 +3,62 @@
 <mapper namespace="com.qdlg.mybatis.GoodsListDao">
 
     <select id="getPhoneList" resultType="java.util.Map">
-        select v.id,v.title,a.img_src,a.now_price,v.description from actual_phone a,virtual_phone v
-        where a.virtual_phone_id=v.id order by addtime desc
+        select v.id,v.title,a.img_src,a.now_price,a.old_price,v.description from actual_phone a,virtual_phone v
+        <where>
+            a.virtual_phone_id=v.id
+        <if test="title != null and !&quot;&quot;.equals(title.trim())">
+            and v.title like '%' #{title} '%'
+        </if>
+        </where>
+        order by addtime desc
     </select>
     <select id="getPhoneListById" parameterType="java.lang.Integer" resultType="java.util.Map">
         select title,color,ram,rom,img_src,now_price,description from actual_phone a,virtual_phone v
         where a.virtual_phone_id=v.id and v.id=#{id}
     </select>
-    <!--<select id="getPhoneListByTitle" parameterType="java.lang.String" resultMap="phoneList">-->
-        <!--select * from actual_phone-->
-        <!--<where>-->
-            <!--<if test="title != null and !&quot;&quot;.equals(title.trim())">-->
-                <!--title like '%' #{title} '%'-->
-            <!--</if>-->
-        <!--</where>-->
-    <!--</select>-->
-
     <select id="getNoteBookList" resultType="java.util.Map">
         select v.id,v.title,a.img_src,a.now_price,v.description from actual_notebook a,virtual_notebook v
-        where a.virtual_notebook_id=v.id order by addtime desc
+        <where>
+            a.virtual_notebook_id=v.id
+            <if test="title != null and !&quot;&quot;.equals(title.trim())">
+                and v.title like '%' #{title} '%'
+            </if>
+        </where>
+        order by addtime desc
     </select>
     <select id="getNoteBookListById" parameterType="java.lang.Integer" resultType="java.util.Map">
         select title,color,version,img_src,now_price,description from actual_notebook a,virtual_notebook v
         where a.virtual_notebook_id=v.id and v.id=#{id}
     </select>
-    <!--<select id="getNoteBookListByTitle" parameterType="java.lang.String" resultMap="notebookList">-->
-        <!--select * from actual_notebook-->
-        <!--<where>-->
-            <!--<if test="title != null and !&quot;&quot;.equals(title.trim())">-->
-                <!--title like '%' #{title} '%'-->
-            <!--</if>-->
-        <!--</where>-->
-    <!--</select>-->
-
     <select id="getTVList" resultType="java.util.Map">
         select v.id,v.title,a.img_src,a.now_price,v.description from actual_tv a,virtual_tv v
-        where a.virtual_tv_id=v.id order by addtime desc
+        <where>
+            a.virtual_tv_id=v.id
+            <if test="title != null and !&quot;&quot;.equals(title.trim())">
+                and v.title like '%' #{title} '%'
+            </if>
+        </where>
+        order by addtime desc
     </select>
     <select id="getTVListById" parameterType="java.lang.Integer" resultType="java.util.Map">
         select title,color,version,img_src,now_price,description from actual_tv a,virtual_tv v
         where a.virtual_tv_id=v.id and v.id=#{id}
     </select>
-    <!--<select id="getTVListByTitle" parameterType="java.lang.String" resultMap="tvList">-->
-        <!--select * from actual_tv-->
-        <!--<where>-->
-            <!--<if test="title != null and !&quot;&quot;.equals(title.trim())">-->
-                <!--title like '%' #{title} '%'-->
-            <!--</if>-->
-        <!--</where>-->
-    <!--</select>-->
-    <resultMap id="partList" type="com.qdlg.model.Part">
-        <!--执行sql语句返回的结果集与实体类对应-->
-        <id column="id" jdbcType="INTEGER" property="id"></id>
-        <result column="color" jdbcType="VARCHAR" property="color"></result>
-        <result column="img_src" jdbcType="VARCHAR" property="img_src"></result>
-        <result column="now_price" jdbcType="FLOAT" property="now_price"></result>
-        <result column="old_price" jdbcType="FLOAT" property="old_price"></result>
-        <result column="amount" jdbcType="INTEGER" property="amount"></result>
-        <result column="title" jdbcType="VARCHAR" property="title"></result>
-        <result column="description" jdbcType="VARCHAR" property="description"></result>
-        <result column="addtime" jdbcType="TIMESTAMP" property="addtime"></result>
-    </resultMap>
-    <select id="getPartList" resultMap="partList">
-        select * from part where 1=1 order by addtime desc
-    </select>
-    <select id="getPartListById" parameterType="java.lang.Integer" resultType="com.qdlg.model.Part">
-        select * from part where id=#{id}
-    </select>
-    <select id="getPartListByTitle" parameterType="java.lang.String" resultMap="partList">
-        select * from part
+    <select id="getPartList" resultType="java.util.Map">
+        select v.title,a.img_src,a.now_price,a.old_price,v.id,v.description from actual_part a,virtual_part v
         <where>
-            <if test="title != null and !&quot;&quot;.equals(title.trim())">
-                title like '%' #{title} '%'
-            </if>
-        </where>
+        a.virtual_part_id=v.id
+        <if test="title != null and !&quot;&quot;.equals(title.trim())">
+            and v.title like '%' #{title} '%'
+        </if>
+    </where>
+        order by addtime desc
     </select>
+    <select id="getPartListById" parameterType="java.lang.Integer" resultType="java.util.Map">
+        select title,color,img_src,now_price,description from actual_part a,virtual_part v
+        where a.virtual_part_id=v.id and v.id=#{id}
+    </select>
+
     <resultMap id="newgoodsList" type="com.qdlg.model.NewGoods">
         <!--执行sql语句返回的结果集与实体类对应-->
         <id column="id" jdbcType="INTEGER" property="id"></id>

@@ -36,7 +36,6 @@
         </div>
 
         <div class="nav-user-ctn">
-
             <!-- 插入数据 2选1 -->
             <!-- 未登录 -->
 
@@ -116,7 +115,7 @@
                             <!-- 插入数据 -->
                         <c:forEach begin="0" end="8" var="tv" items="${tvList}">
                             <li class="li-base li-item">
-                                <img class="img-item" src="<%=basePath%>/images/notebook/${tv.img_src}"/><a class="a-base a-item" href="buy.html?goods_id=${tv.id}&type=tv">${tv.title}</a>
+                                <img class="img-item" src="<%=basePath%>/images/tv/${tv.img_src}"/><a class="a-base a-item" href="buy.html?goods_id=${tv.id}&type=tv">${tv.title}</a>
                             </li>
                         </c:forEach>
                         </ul>
@@ -127,7 +126,7 @@
                         <!-- 插入数据 -->
                         <c:forEach begin="0" end="8" var="part" items="${partList}">
                             <li class="li-base li-item">
-                                <img class="img-item" src="<%=basePath%>/images/notebook/${part.img_src}"/><a class="a-base a-item" href="buy.html?goods_id=${part.id}&type=part">${part.title}</a>
+                                <img class="img-item" src="<%=basePath%>/images/part/${part.img_src}"/><a class="a-base a-item" href="buy.html?goods_id=${part.id}&type=part">${part.title}</a>
                             </li>
                         </c:forEach>
                     </ul>
@@ -182,7 +181,7 @@
                     <div class="items-block">
                         <div class="slogan-ctn">
                             <!-- 最多显示一个 -->
-                            <c:if test="${phone.old_price!=0}">
+                            <c:if test="${phone.old_price!=null}">
                                 <span class="slogan-dazhe">打折</span>
                             </c:if>
                         </div>
@@ -219,7 +218,7 @@
                     <div class="items-block">
                         <div class="slogan-ctn">
                             <!-- 最多显示一个 -->
-                            <c:if test="${notebook.old_price!=0}">
+                            <c:if test="${notebook.old_price!=null}">
                                 <span class="slogan-dazhe">打折</span>
                             </c:if>
                         </div>
@@ -256,7 +255,7 @@
                     <div class="items-block">
                         <div class="slogan-ctn">
                             <!-- 最多显示一个 -->
-                            <c:if test="${tv.old_price!=0}">
+                            <c:if test="${tv.old_price!=null}">
                                 <span class="slogan-dazhe">打折</span>
                             </c:if>
                         </div>
@@ -293,7 +292,7 @@
                     <div class="items-block">
                         <div class="slogan-ctn">
                             <!-- 最多显示一个 -->
-                            <c:if test="${part.old_price!=0}">
+                            <c:if test="${part.old_price!=null}">
                                 <span class="slogan-dazhe">打折</span>
                             </c:if>
                         </div>

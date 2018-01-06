@@ -1,7 +1,6 @@
 package com.qdlg.service;
 
-import com.qdlg.model.Evaluate;
-
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -9,5 +8,5 @@ import java.util.Map;
  */
 public interface EvaluateService {
     //获取商品评价信息
-    Map<String,Object> getGoodsEvaluate(Evaluate dto);
+   List<Map<String,Object>> getGoodsEvaluate(int id,String type);
 }

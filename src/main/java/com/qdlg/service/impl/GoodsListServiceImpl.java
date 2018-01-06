@@ -17,48 +17,28 @@ public class GoodsListServiceImpl implements GoodsListService {
     @Autowired
     private GoodsListDao dao =null;
     @Override
-    public List<Map<String,Object>> getPhoneList() {
-            return this.dao.getPhoneList();
+    public List<Map<String,Object>> getPhoneList(String title) {
+            return this.dao.getPhoneList(title);
     }
 
     @Override
-    public List<Map<String,Object>> getNoteBookList() {
-        return this.dao.getNoteBookList();
+    public List<Map<String,Object>> getNoteBookList(String title) {
+        return this.dao.getNoteBookList(title);
     }
 
     @Override
-    public List<Map<String,Object>> getTVList() {
-        return this.dao.getTVList();
+    public List<Map<String,Object>> getTVList(String title) {
+        return this.dao.getTVList(title);
     }
 
     @Override
-    public List<Part> getPartList() {
-        return this.dao.getPartList();
+    public List<Map<String,Object>> getPartList(String title) {
+        return this.dao.getPartList(title);
     }
 
     @Override
     public List<NewGoods> getNewGoodsList() {
         return this.dao.getNewGoodsList();
-    }
-
-    @Override
-    public List<Phone> getPhoneListByTitle(String title) {
-        return this.dao.getPhoneListByTitle(title);
-    }
-
-    @Override
-    public List<NoteBook> getNoteBookListByTitle(String title) {
-        return this.dao.getNoteBookListByTitle(title);
-    }
-
-    @Override
-    public List<TV> getTVListByTitle(String title) {
-        return this.dao.getTVListByTitle(title);
-    }
-
-    @Override
-    public List<Part> getPartListByTitle(String title) {
-        return this.dao.getPartListByTitle(title);
     }
 
     @Override
@@ -77,7 +57,7 @@ public class GoodsListServiceImpl implements GoodsListService {
     }
 
     @Override
-    public Part getPartListById(int id) {
+    public List<Map<String,Object>> getPartListById(int id) {
         return this.dao.getPartListById(id);
     }
 }

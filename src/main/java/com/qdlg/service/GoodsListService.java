@@ -10,23 +10,15 @@ import java.util.Map;
  */
 public interface GoodsListService {
     //获取手机列表
-    List<Map<String,Object>> getPhoneList ();
+    List<Map<String,Object>> getPhoneList(String title);
     //获取笔记本列表
-    List<Map<String,Object>> getNoteBookList();
+    List<Map<String,Object>> getNoteBookList(String title);
     //获取电视列表
-    List<Map<String,Object>> getTVList();
+    List<Map<String,Object>> getTVList(String title);
     //获取配件列表
-    List<Part> getPartList();
+    List<Map<String,Object>> getPartList(String title);
     //获取新品列表
     List<NewGoods> getNewGoodsList();
-    //通过名称获取手机列表
-    List<Phone> getPhoneListByTitle (String title);
-    //通过名称获取笔记本列表
-    List<NoteBook> getNoteBookListByTitle(String title);
-    //通过名称获取电视列表
-    List<TV> getTVListByTitle(String title);
-    //通过名称获取配件列表
-    List<Part> getPartListByTitle(String title);
     //通过id获取手机列表
     List<Map<String,Object>> getPhoneListById (int id);
     //通过id获取笔记本列表
@@ -34,5 +26,5 @@ public interface GoodsListService {
     //通过id获取电视列表
     List<Map<String,Object>> getTVListById(int id);
     //通过id获取配件列表
-    Part getPartListById(int id);
+    List<Map<String,Object>> getPartListById(int id);
 }

@@ -20,20 +20,20 @@ public class GoodsListController {
     @RequestMapping("index.html")
     public String getGoodsList(Model model) throws Exception{
         GoodsListTool tool = new GoodsListTool();
-        model.addAttribute("phoneList",tool.getDistinctGoodsList(this.service.getPhoneList()));
-        model.addAttribute("notebookList",tool.getDistinctGoodsList(this.service.getNoteBookList()));
-        model.addAttribute("tvList",tool.getDistinctGoodsList(this.service.getTVList()));
-        model.addAttribute("partList",this.service.getPartList());
+        model.addAttribute("phoneList",tool.getDistinctGoodsList(this.service.getPhoneList(null)));
+        model.addAttribute("notebookList",tool.getDistinctGoodsList(this.service.getNoteBookList(null)));
+        model.addAttribute("tvList",tool.getDistinctGoodsList(this.service.getTVList(null)));
+        model.addAttribute("partList",tool.getDistinctGoodsList(this.service.getPartList(null)));
         model.addAttribute("newgoodsList",this.service.getNewGoodsList());
         return "index";
     }
     @RequestMapping("search.html")
     public String getGoodsListByTitle(HttpServletRequest request,HttpServletResponse response){
         String title = request.getParameter("title");
-        request.setAttribute("phoneListByTitle",this.service.getPhoneListByTitle(title));
-        request.setAttribute("notebookListByTitle",this.service.getNoteBookListByTitle(title));
-        request.setAttribute("tvListByTitle",this.service.getTVListByTitle(title));
-        request.setAttribute("partListByTitle",this.service.getPartListByTitle(title));
+        request.setAttribute("phoneListByTitle",this.service.getPhoneList(title));
+        request.setAttribute("notebookListByTitle",this.service.getNoteBookList(title));
+        request.setAttribute("tvListByTitle",this.service.getTVList(title));
+        request.setAttribute("partListByTitle",this.service.getPartList(title));
         return "search";
     }
     @RequestMapping("more.html")

@@ -1,8 +1,8 @@
 package com.qdlg.mybatis;
 
-import com.qdlg.model.Evaluate;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -10,5 +10,5 @@ import java.util.Map;
  */
 public interface EvaluateDao {
     //获取商品评价信息
-    Map<String,Object> getGoodsEvaluate(Evaluate dto);
+    List<Map<String,Object>> getGoodsEvaluate(@Param("id") int id,@Param("type") String type);
 }

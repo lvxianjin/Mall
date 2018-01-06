@@ -136,10 +136,10 @@
     width: 41px;
     height: 69px;
     cursor: pointer;
-    background: url(icon-slides.png) no-repeat -84px 50%;
+    background: url(../images/index/icon-slides.png) no-repeat -84px 50%;
 }
 .ui-prev:hover, .ui-prev:active{
-    background: url(icon-slides.png) no-repeat 0px 50%;
+    background: url(../images/index/icon-slides.png) no-repeat 0px 50%;
 }
 .ui-next{
     position: absolute;
@@ -148,10 +148,10 @@
     width: 41px;
     height: 69px;
     cursor: pointer;
-    background: url(icon-slides.png) no-repeat -126px 50%;
+    background: url(../images/index/icon-slides.png) no-repeat -126px 50%;
 }
 .ui-next:hover, .ui-next:active{
-    background: url(icon-slides.png) no-repeat -42px 50%;
+    background: url(../images/index/icon-slides.png) no-repeat -42px 50%;
 }
 .ui-controls{
     width: 400px;

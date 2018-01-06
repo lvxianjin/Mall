@@ -106,7 +106,7 @@
             <!-- 选择具体版本 -->
             <div class="choose-ctn">
                 <!-- 插入数据 虚拟商品id-->
-                <input class="hide-data" value="${goods["id"]}" id="goods-id">
+                <input class="hide-data" value="${id}" id="goods-id">
                 <!-- 插入数据 类别-->
                 <input class="hide-data" value="${type}" id="category">
                 <!-- 插入数据-循环-->
@@ -130,6 +130,42 @@
                         </c:forEach>
                     </div>
                 </c:if>
+                <c:if test="${type eq 'notebook'}">
+                    <div class="actual-choose">
+                        <h3 class="choose-title">选择颜色</h3>
+                        <c:forEach items="${ColorList}" var="color">
+                            <div class="choose-value choose-value0" data='{"index": 0, "field": "color"}'>${color}</div>
+                        </c:forEach>
+                    </div>
+                    <div class="actual-choose">
+                        <h3 class="choose-title">选择版本</h3>
+                        <c:forEach items="${VersionList}" var="version">
+                            <div class="choose-value choose-value0" data='{"index": 0, "field": "color"}'>${version}</div>
+                        </c:forEach>
+                    </div>
+                </c:if>
+                <c:if test="${type eq 'tv'}">
+                    <div class="actual-choose">
+                        <h3 class="choose-title">选择颜色</h3>
+                        <c:forEach items="${ColorList}" var="color">
+                            <div class="choose-value choose-value0" data='{"index": 0, "field": "color"}'>${color}</div>
+                        </c:forEach>
+                    </div>
+                    <div class="actual-choose">
+                        <h3 class="choose-title">选择版本</h3>
+                        <c:forEach items="${VersionList}" var="version">
+                            <div class="choose-value choose-value0" data='{"index": 0, "field": "color"}'>${version}</div>
+                        </c:forEach>
+                    </div>
+                </c:if>
+                <c:if test="${type eq 'part'}">
+                <div class="actual-choose">
+                    <h3 class="choose-title">选择颜色</h3>
+                    <c:forEach items="${ColorList}" var="color">
+                        <div class="choose-value choose-value0" data='{"index": 0, "field": "color"}'>${color}</div>
+                    </c:forEach>
+                </div>
+            </c:if>
                 <span class="surplus" id="surplus"></span>
             </div>
             <!-- 单价 -->
@@ -167,79 +203,201 @@
             </div>
         </div>
     </section>
+    <c:if test="${type eq 'phone'}">
+        <section class="parameter" id="parameter">
+            <div class="title-ctn"><span class="title-span">参数</span></div>
+            <!-- 参数 左列-->
+            <div class="parameter-ctn parameter-ctn-l">
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">分辨率</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.resolution_ratio}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">屏幕尺寸</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.screen_size}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">CPU</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.cpu}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">GPU</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.gpu}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">网络</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.network}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">内存</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.memory}</span>
+                </div>
+            </div>
 
-    <!-- 参数详情 -->
-    <section class="parameter" id="parameter">
-        <div class="title-ctn"><span class="title-span">参数</span></div>
+            <!-- 参数 右列-->
+            <div class="parameter-ctn parameter-ctn-r">
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">前置摄像头</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.front_camera}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">后置摄像头</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.back_camera}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">电池容量</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.battery_capacity}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">尺寸</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.size}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">重量</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.weight}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">系统</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.os}</span>
+                </div>
+            </div>
+        </section>
+    </c:if>
+    <c:if test="${type eq 'notebook'}">
+        <section class="parameter" id="parameter">
+            <div class="title-ctn"><span class="title-span">参数</span></div>
+            <!-- 参数 左列-->
+            <div class="parameter-ctn parameter-ctn-l">
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">屏幕</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.screen}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">屏幕尺寸</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.screen_size}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">分辨率</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.resolution_ratio}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">CPU</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.cpu}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">GPU</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.gpu}</span>
+                </div>
+            </div>
 
-        <!-- 参数 左列-->
-        <div class="parameter-ctn parameter-ctn-l">
-            <div class="parameter-block">
-                <span class="span-parameter span-parameter-l">分辨率</span>
-                <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r">${GoodsParameter.resolution_ratio}</span>
+            <!-- 参数 右列-->
+            <div class="parameter-ctn parameter-ctn-r">
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">内存</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.internal_memory}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">硬盘</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.disk}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">相机</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.camera}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">接口</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.inteface}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">电池容量</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.battery_capacity}</span>
+                </div>
             </div>
-            <div class="parameter-block">
-                <span class="span-parameter span-parameter-l">屏幕尺寸</span>
-                <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r">${GoodsParameter.screen_size}</span>
+        </section>
+    </c:if>
+    <c:if test="${type eq 'tv'}">
+        <section class="parameter" id="parameter">
+            <div class="title-ctn"><span class="title-span">参数</span></div>
+            <!-- 参数 左列-->
+            <div class="parameter-ctn parameter-ctn-l">
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">屏幕</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.screen}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">分辨率</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.resolution_ratio}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">扬声器</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.speaker}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">CPU</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.cpu}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">GPU</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.gpu}</span>
+                </div>
             </div>
-            <div class="parameter-block">
-                <span class="span-parameter span-parameter-l">CPU</span>
-                <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r">${GoodsParameter.cpu}</span>
+            <!-- 参数 右列-->
+            <div class="parameter-ctn parameter-ctn-r">
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">RAM</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.ram}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">ROM</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.rom}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">无线网络</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.wifi}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">尺寸</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.size}</span>
+                </div>
+                <div class="parameter-block">
+                    <span class="span-parameter span-parameter-l">操作系统</span>
+                    <div class="separate-point"></div>
+                    <span class="span-parameter span-parameter-r">${GoodsParameter.os}</span>
+                </div>
             </div>
-            <div class="parameter-block">
-                <span class="span-parameter span-parameter-l">GPU</span>
-                <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r">${GoodsParameter.gpu}</span>
-            </div>
-            <div class="parameter-block">
-                <span class="span-parameter span-parameter-l">网络</span>
-                <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r">${GoodsParameter.network}</span>
-            </div>
-            <div class="parameter-block">
-                <span class="span-parameter span-parameter-l">内存</span>
-                <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r">${GoodsParameter.memory}</span>
-            </div>
-        </div>
-
-        <!-- 参数 右列-->
-        <div class="parameter-ctn parameter-ctn-r">
-            <div class="parameter-block">
-                <span class="span-parameter span-parameter-l">前置摄像头</span>
-                <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r">${GoodsParameter.front_camera}</span>
-            </div>
-            <div class="parameter-block">
-                <span class="span-parameter span-parameter-l">后置摄像头</span>
-                <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r">${GoodsParameter.back_camera}</span>
-            </div>
-            <div class="parameter-block">
-                <span class="span-parameter span-parameter-l">电池容量</span>
-                <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r">${GoodsParameter.battery_capacity}</span>
-            </div>
-            <div class="parameter-block">
-                <span class="span-parameter span-parameter-l">尺寸</span>
-                <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r">${GoodsParameter.size}</span>
-            </div>
-            <div class="parameter-block">
-                <span class="span-parameter span-parameter-l">重量</span>
-                <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r">${GoodsParameter.weight}</span>
-            </div>
-            <div class="parameter-block">
-                <span class="span-parameter span-parameter-l">系统</span>
-                <div class="separate-point"></div>
-                <span class="span-parameter span-parameter-r">${GoodsParameter.os}</span>
-            </div>
-        </div>
-    </section>
+        </section>
+    </c:if>
 
     <!-- 评价 -->
     <section class="evaluation" id="evaluation">
@@ -259,7 +417,7 @@
                             <span class="small-eval evaluation-time">时间ㆍ ${evaluate["addtime"]}</span>
                             <span class="small-eval evaluation-score">评分ㆍ${evaluate["score"]}</span>
                         </div>
-                        <p class="evaluation-text">${evaluate[test]}</p>
+                        <p class="evaluation-text">${evaluate['text']}</p>
                     </div>
                 </c:forEach>
             <!-- 隐藏剩余三条 -->

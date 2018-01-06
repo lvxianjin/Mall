@@ -29,13 +29,17 @@ public class GoodsListTool {
             Object img_src = null;
             Object title = null;
             Object des = null;
+            Object old_price =null;
+            int price = 0;
             while(it3.hasNext()){
                 Map<String,Object> e = it3.next();
                 if(((float)e.get("now_price")) < minus && id == e.get("id")){
                     minus = (float)e.get("now_price");
+                    price =(int) minus;
                     img_src = e.get("img_src");
                     title = e.get("title");
                     des = e.get("description");
+                    old_price = e.get("old_price");
                 }
             }
             //填充
@@ -47,7 +51,8 @@ public class GoodsListTool {
             //System.out.print(" img_src:"+img_src);
             line.put("description", des);
             //System.out.print(" description:"+des);
-            line.put("noe_price", minus);
+            line.put("now_price", price);
+            line.put("old_price",old_price);
             //System.out.print(" price:"+minus);
             //System.out.println();
             output.add(line);
