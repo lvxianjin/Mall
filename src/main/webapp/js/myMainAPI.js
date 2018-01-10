@@ -2,12 +2,122 @@ Function.prototype.method = function(name,fn){
 	this.prototype[name] = fn;
 	return this;
 };
+//version 1.4.4
+//添加CancelableBag queen，cotain修改removeSelf的opt.clean为opt.persist
 //version 1.4.3
 //修改  || this.element.length === 0
 //修改 $().move
 //$('<li>' | '.a').replaceChildNode(newNode,oldNode,number).removeSelfNode(numberA,numberB_?).addEvent('click',fn,true_?,nember_?).removeEvent('click',fn,true_?,nember_?).setAttr('innerHTML','aaa',number_?).getAttr('innerHTML',number_?).setStyle('color','red',number_?).removeSelf(numberA,numberB_?);
 //$('#a' | element).removeChildNode(node|number).appendChildNode(Node,number_?).replaceChildNode(node,child).removeSelfNode().addEvent('click',fn,true_?).removeEvent('click',fn,true_?).setAttr('innerHTML','aaa').getAttr('innerHTML').setStyle('color','red');
 var installHelper = (function(){
+	var CancelableBag = (function (undefined){
+		var last = null;
+		var lastIndex = 0;
+ 
+		function _resolve(){
+			if(this.index !== lastIndex)
+				return;
+			else{
+				last.resolve.apply(null, arguments);
+			}
+		}
+		function _reject(){
+			if(this.index !== lastIndex)
+				return;
+			else{
+				last.reject.apply(null, arguments);
+			}
+		}
+		return {
+			push(op, args, resolve, reject){
+				args = args === undefined ? [] : args;
+				resolve = (typeof resolve) === 'function' ? resolve : function(){};
+				reject = (typeof reject) === 'function' ? reject : function(){};
+
+				lastIndex ++;
+				op.apply(null, args).then(_resolve.bind({index: lastIndex}), _reject.bind({index: lastIndex})).catch(err => {
+					console.log(err);
+				});
+
+				last = {resolve, reject};
+				return this;
+			}
+		}
+	})();
+	var queen = (function(undefined){
+		var index = 0;
+		var commonIndex = 0;
+		var map = {};
+
+		function _resolve(){
+			//如果前一个已处理，则处理当前
+			if(this.index - 1 === commonIndex){
+				//处理回调
+				map[this.index].resolve.apply(null, arguments);
+				//索引指向下一个
+				commonIndex ++;
+				//断开当前回调的引用
+				delete map[this.index];
+				
+				//如果存在下一个“待处理”的回调，则处理，递归
+				var next = map[this.index + 1];
+				if(next && next.overstockArgs){
+					if(next.overstockArgs.resolve)
+						next.m_resolve.apply(null, next.overstockArgs.resolve);
+					else if(next.overstockArgs.reject)
+						next.m_reject.apply(null, next.overstockArgs.reject);
+				}
+			}else{//如果前一个没处理，则积压实参，暂不处理
+				map[this.index].overstockArgs = {
+					resolve: [].slice.call(arguments)
+				};
+			}
+		}
+		function _reject(){
+			//如果前一个已处理，则处理当前
+			if(this.index - 1 === commonIndex){
+				//处理回调
+				map[this.index].reject.apply(null, arguments);
+				//索引指向下一个
+				commonIndex ++;
+				//断开当前回调的引用
+				delete map[this.index];
+				
+				//如果存在下一个“待处理”的回调，则处理，递归
+				var next = map[this.index + 1];
+				if(next && next.overstockArgs){
+					if(next.overstockArgs.resolve)
+						next.m_resolve.apply(null, next.overstockArgs.resolve);
+					else if(next.overstockArgs.reject)
+						next.m_reject.apply(null, next.overstockArgs.reject);
+				}
+			}else{//如果前一个没处理，则积压实参，暂不处理
+				map[this.index].overstockArgs = {
+					reject: [].slice.call(arguments)
+				};
+			}
+		}
+		return {
+			push(op, args, resolve, reject){
+				args = args === undefined ? [] : args;
+				resolve = (typeof resolve) === 'function' ? resolve : function(){};
+				reject = (typeof reject) === 'function' ? reject : function(){};
+				//每组回调 一个id
+				index ++;
+				var m_resolve = _resolve.bind({index});
+				var m_reject = _reject.bind({index});
+				//开始一个操作，使用修改后的回调函数来处理
+				op.apply(null, args).then(m_resolve, m_reject).catch(err => {
+					console.log(err);
+				});
+				//在map中保存了原始回调函数和修改后的回调函数。
+				map[index] = {resolve, reject, m_resolve, m_reject};
+
+				return this;
+			}
+		};
+	})();
+
 	function _$(arg){
 		if(typeof arg[0] === 'object'){
 		 	if(!(arg[0] instanceof HTMLElement) && !(arg[0] instanceof HTMLDocument))
@@ -567,7 +677,7 @@ var installHelper = (function(){
 		}
 		return this;
 	}
-	function removeSelf(opt){//{from: ,to: ,clean:true|false}
+	function removeSelf(opt){//{from: ,to: ,persist:true|false}
 		if(this.element === null || this.element.length === 0){
 			if(_$.log)
 				console.log('function removeSelf: this.element is null.');
@@ -575,34 +685,52 @@ var installHelper = (function(){
 		}
 		if(this.element instanceof HTMLElement){
 			this.element.parentNode.removeChild(this.element);
-			if(opt && opt.clean){
-				delete this.element;
-			}
+			if(opt && opt.persist)
+				return;
+			delete this.element;
 		}
 		else if(this.element instanceof HTMLCollection){
 			if(opt && (typeof opt.from === 'number') && (typeof opt.to === 'number') && opt.from >= 0 && opt.from<=opt.to && opt.to < this.element.length){
 				for(var i=0;i<opt.to-opt.from;i++){
 					this.element[0].parentNode.removeChild(this.element[opt.from]);
-					if(opt && opt.clean){
-						delete this.element[opt.from];
-					}
+					if(opt && opt.persist)
+						return;
+					delete this.element[opt.from];
 				}
 			}else if(opt && (typeof opt.from === 'number') && opt.from>=0 && opt.from<this.element.length){				
 				this.element[0].parentNode.removeChild(this.element[opt.from]);
-				if(opt && opt.clean){
-					delete this.element[opt.from];
-				}
+				if(opt && opt.persist)
+					return;
+				delete this.element[opt.from];
 			}else{
 				var len = this.element.length;
 				for(var i=0;i<len;i++){
 					this.element[0].parentNode.removeChild(this.element[0]);
-					if(opt && opt.clean){
-						delete this.element[opt.from];
-					}
+					if(opt && opt.persist)
+						return;
+					delete this.element[opt.from];
 				}
 			}
 		}
 		return this;
+	}
+	function contain(node){
+		if(this.element === null || this.element.length === 0){
+			if(_$.log)
+				console.log('function removeSelf: this.element is null.');
+			return this;
+		}
+		if(!(node instanceof Node) && !(node.element instanceof Node))
+			return false;
+		if(this.element instanceof HTMLElement){
+			do{
+				if(node.parentNode === this.element)
+					return true;
+			}while(node.parentNode !== Document || !(node.parentNode instanceof DocumentFragment));
+			return false;
+		}else{
+			throw new Error('only handle HTMLCollection.');
+		}
 	}
 	function clean(){
 		if(this.element === null || this.element.length === 0){
@@ -1067,6 +1195,8 @@ var installHelper = (function(){
 				if(info.headers.length === 0){
 					XHR.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 				}
+			}else{
+				XHR.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 			}
 			XHR.send(data);
 		});
@@ -1123,8 +1253,9 @@ var installHelper = (function(){
 			_$.log = false;
 	}
 	
+
 	_$.log = false;
-	_$.method('on',on).method('off',off).method('setAttr',setAttr).method('getAttr',getAttr).method('setOriAttr',setOriAttr).method('getOriAttr',getOriAttr).method('setStyle',setStyle).method('getStyle',getStyle).method('append',append).method('removeChild',removeChild).method('replaceChild',replaceChild).method('removeSelf',removeSelf).method('clean',clean).method('appendTo',appendTo).method('fade',fade).method('index',index);
+	_$.method('on',on).method('off',off).method('setAttr',setAttr).method('getAttr',getAttr).method('setOriAttr',setOriAttr).method('getOriAttr',getOriAttr).method('setStyle',setStyle).method('getStyle',getStyle).method('append',append).method('removeChild',removeChild).method('replaceChild',replaceChild).method('removeSelf',removeSelf).method('clean',clean).method('appendTo',appendTo).method('fade',fade).method('index',index).method('cotain', contain);
 	return function(scope,inter){
 		scope[inter] = function(){
 			return new _$(arguments);
@@ -1133,7 +1264,7 @@ var installHelper = (function(){
 			this[name] = value;
 			return this;
 		};
-		scope[inter].addForFunc('getAjax',getAjax).addForFunc('postAjax',postAjax).addForFunc('post',post).addForFunc('get', get).addForFunc('ajax',ajax).addForFunc('create',create).addForFunc('move',move).addForFunc('log',log).addForFunc('tip',tip);
+		scope[inter].addForFunc('getAjax',getAjax).addForFunc('postAjax',postAjax).addForFunc('post',post).addForFunc('get', get).addForFunc('ajax',ajax).addForFunc('create',create).addForFunc('move',move).addForFunc('log',log).addForFunc('tip',tip).addForFunc('CancelableBag', CancelableBag).addForFunc('queen', queen);
 	};
 })();
 installHelper(window,'$');

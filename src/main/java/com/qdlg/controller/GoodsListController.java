@@ -29,15 +29,24 @@ public class GoodsListController {
     }
     @RequestMapping("search.html")
     public String getGoodsListByTitle(HttpServletRequest request,HttpServletResponse response){
+        GoodsListTool tool = new GoodsListTool();
         String title = request.getParameter("title");
-        request.setAttribute("phoneListByTitle",this.service.getPhoneList(title));
-        request.setAttribute("notebookListByTitle",this.service.getNoteBookList(title));
-        request.setAttribute("tvListByTitle",this.service.getTVList(title));
-        request.setAttribute("partListByTitle",this.service.getPartList(title));
+        request.setAttribute("phoneListByTitle",tool.getDistinctGoodsList(this.service.getPhoneList(title)));
+        request.setAttribute("notebookListByTitle",tool.getDistinctGoodsList(this.service.getNoteBookList(title)));
+        request.setAttribute("tvListByTitle",tool.getDistinctGoodsList(this.service.getTVList(title)));
+        request.setAttribute("partListByTitle",tool.getDistinctGoodsList(this.service.getPartList(title)));
         return "search";
     }
     @RequestMapping("more.html")
-    public String getAllGoodsList(){
+    public String getAllGoodsList(Model model,HttpServletRequest request){
+        String type = request.getParameter("type");
+        System.out.println(type);
+        GoodsListTool tool = new GoodsListTool();
+        model.addAttribute("phoneList",tool.getDistinctGoodsList(this.service.getPhoneList(null)));
+        model.addAttribute("notebookList",tool.getDistinctGoodsList(this.service.getNoteBookList(null)));
+        model.addAttribute("tvList",tool.getDistinctGoodsList(this.service.getTVList(null)));
+        model.addAttribute("partList",tool.getDistinctGoodsList(this.service.getPartList(null)));
+        model.addAttribute("type",type);
         return "more";
     }
 }

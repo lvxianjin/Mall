@@ -22,10 +22,10 @@
     <header class="nav-ctn">
         <div class="nav-list-ctn">
             <ul class="ul-base nav-list">
-                <li class="li-base nav-li-item"><a class="a-base a-category" href="#phone-ctn">手机</a></li>
-                <li class="li-base nav-li-item"><a class="a-base a-category" href="#notebook-ctn">笔记本</a></li>
-                <li class="li-base nav-li-item"><a class="a-base a-category" href="#tv-ctn">电视</a></li>
-                <li class="li-base nav-li-item"><a class="a-base a-category" href="#parts-ctn">配件</a></li>
+                <li class="li-base nav-li-item"><a class="a-base a-category" href="<%=path%>/more.html?type=phone">手机</a></li>
+                <li class="li-base nav-li-item"><a class="a-base a-category" href="<%=path%>/more.html?type=notebook">笔记本</a></li>
+                <li class="li-base nav-li-item"><a class="a-base a-category" href="<%=path%>/more.html?type=tv">电视</a></li>
+                <li class="li-base nav-li-item"><a class="a-base a-category" href="<%=path%>/more.html?type=part">配件</a></li>
             </ul>
         </div>
 
@@ -41,7 +41,7 @@
 
             <c:if test="${Userinfo.account eq null }">
                 <div class="unlogged" id="unlogged">
-                    <a class="a-base" href="register">注册</a>
+                    <a class="a-base" href="<%=path%>/register.html">注册</a>
                     <div></div>
                     <a class="a-base" href="<%=path%>/login.html">登录</a>
                 </div>
@@ -52,6 +52,7 @@
                     <span class="user-name" id="user-name">${Userinfo.nick_name}</span>
                     <ul class="user-space" id="user-space">
                         <li class="li-base user-space-li-item"><a class="a-base a-user-space" href="order">我的订单</a></li>
+                        <li class="li-base user-space-li-item"><a class="a-base a-user-space" href="<%=path%>/CarList.html">购物车</a></li>
                         <li class="li-base user-space-li-item"><a class="a-base a-user-space" href="portal">个人中心</a></li>
                         <li class="li-base li-line"></li>
                         <li class="li-base user-space-li-item"><a class="a-base a-user-space" href="<%=path%>/exit.html">退出</a></li>
@@ -138,14 +139,14 @@
                 <div class="new-ctn new-ctn-show">
                     <!-- 插入数据 第1张-->
                     <c:forEach var="newgoods" items="${newgoodsList}" begin="0" end="1">
-                        <a href="/buy.html?goods_id=${newgoods.id}&type=${newgoods.type}"><img class="img-new"src="<%=basePath%>/images/newgoods/${newgoods.img_src}"></a>
+                        <a href="buy.html?goods_id=${newgoods.goods_id}&type=${newgoods.type}"><img class="img-new"src="<%=basePath%>/images/newgoods/${newgoods.img_src}"></a>
                     </c:forEach>
                 </div>
 
                 <!-- 插入数据 第2到第5张-->
                 <c:forEach var="newgoods" items="${newgoodsList}" begin="1" end="4">
                     <div class="new-ctn">
-                        <a href="/buy.html?goods_id=${newgoods.id}&type=${newgoods.type}"><img class="img-new"src="<%=basePath%>/images/newgoods/${newgoods.img_src}"></a>
+                        <a href="buy.html?goods_id=${newgoods.goods_id}&type=${newgoods.type}"><img class="img-new"src="<%=basePath%>/images/newgoods/${newgoods.img_src}"></a>
                     </div>
                 </c:forEach>
                 <a class="ui-prev" id="prev"></a>

@@ -9,7 +9,7 @@
     <input type="hidden" name="pageFrom" value=<%=request.getAttribute("pathFrom")%>/>
     用户名：<input type="text" name="account" /><br/>
     密码：<input type="password" name="password" /><br/>
-    <input type="submit" value="登录" onclick="javascript:window.history.back(-1);"/>
+    <input type="submit" value="登录"/>
 </form>
 </body>
 </html>

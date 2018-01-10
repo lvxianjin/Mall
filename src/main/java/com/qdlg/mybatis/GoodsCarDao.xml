@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.qdlg.mybatis.GoodsCarDao">
+    <select id="phoneCarList" resultType="java.util.Map">
+        select a.id,amount,title,now_price from actual_phone a,virtual_phone v
+        where a.virtual_phone_id=v.id and v.id=#{id} and a.color =#{color} and a.ram=#{ram} and a.rom=#{rom}
+    </select>
+    <select id="notebookCarList" resultType="java.util.Map">
+        select a.id,amount,title,now_price from actual_notebook a,virtual_notebook v
+        where a.virtual_notebook_id=v.id and v.id=#{id} and a.color =#{color} and a.version=#{version}
+    </select>
+    <select id="tvCarList" resultType="java.util.Map">
+        select a.id,amount,title,now_price from actual_tv a,virtual_tv v
+        where a.virtual_tv_id=v.id and v.id=#{id} and a.color =#{color} and a.version=#{version}
+    </select>
+    <select id="partCarList" resultType="java.util.Map">
+        select a.id,amount,title,now_price from actual_part a,virtual_part v
+        where a.virtual_part_id=v.id and v.id=#{id} and a.color =#{color}
+    </select>
+    <insert id="addGoods">
+        insert into shopping_cart(user_id,act_goods_id,type,amount)
+                            values (#{user_id},#{goods_id},#{type}, #{amount})
+    </insert>
+    <select id="queryId" resultType="java.util.List">
+        select act_goods_id from shopping_cart
+    </select>
+    <select id="getPhoneCarList" resultType="java.util.Map">
+        select s.id,v.title,a.color,a.ram,a.rom,a.img_src,a.now_price,v.description,s.amount from actual_phone a,shopping_cart s,virtual_phone v
+        where v.id = a.virtual_phone_id and a.id = s.act_goods_id and s.user_id =#{user_id} and s.type='phone'
+    </select>
+    <select id="getNoteBookCarList" resultType="java.util.Map">
+        select s.id,v.title,a.color,a.version,a.img_src,a.now_price,v.description,s.amount from actual_notebook a,shopping_cart s,virtual_notebook v
+        where v.id = a.virtual_notebook_id and a.id = s.act_goods_id and s.user_id =#{user_id} and s.type='notebook'
+    </select>
+    <select id="getTVCarList" resultType="java.util.Map">
+        select s.id,v.title,a.color,a.version,a.img_src,a.now_price,v.description,s.amount from actual_tv a,shopping_cart s,virtual_tv v
+        where v.id = a.virtual_tv_id and a.id = s.act_goods_id and s.user_id =#{user_id} and s.type='tv'
+    </select>
+    <select id="getPartCarList" resultType="java.util.Map">
+        select s.id,v.title,a.color,a.img_src,a.now_price,v.description,s.amount from actual_part a,shopping_cart s,virtual_part v
+        where v.id = a.virtual_part_id and a.id = s.act_goods_id and s.user_id =#{user_id} and s.type='part'
+    </select>
+    <update id="updataAmount">
+        update shopping_cart set amount=#{amount} where id=#{id}
+    </update>
+    <select id="getNumber">
+        select COUNT(*) from shopping_cart where user_id=#{user_id}
+    </select>
+</mapper>

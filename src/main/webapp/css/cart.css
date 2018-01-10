@@ -1,0 +1,189 @@
+body{
+    font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+    background: #f5f5f5;
+}
+@font-face{
+    font-family: 'iconfont';
+    src: url(iconfont.ttf);
+}
+.aa{
+    font-family: 'iconfont';
+}
+.cart-ctn{
+    width: 90%;
+    margin: 20px auto;
+}
+.cart-sure-height{
+    height: 374px;
+}
+.cart-item{
+    width: 100%;
+    height: 100px;
+    border-bottom: 1px solid #e0e0e0;
+    background: white;
+}
+.cart-first-line{
+    height: 70px;
+    width: 100%;
+    line-height: 70px;
+    border-bottom: 1px solid #e0e0e0;
+    background: white;
+    color: #424242;
+}
+.cart-block{
+    float: left;
+    text-align: center;
+}
+.th-choose-all{
+    width: 7%;
+}
+.th-title{
+    width: 43%;
+    padding-left: 3%;
+    text-align: left;
+}
+.th-price{
+    width: 7%;
+}
+.th-amount{
+    width: 20%;
+}
+.th-sum{
+    width: 8%;
+}
+.th-operat{
+    width: 11%;
+}
+
+.vertical-center{
+    line-height: 100px;
+    height: 100px;
+}
+.choose-all{
+    width: 7%;
+
+}
+
+.title{
+    width: 46%;
+}
+.goods-img{
+    width: 80px;
+    height: 80px;
+    margin: 10px 10px 10px 10px;
+    display: block;
+    float: left;
+}
+.goods-title-ctn{
+    float: left;
+    text-align: left;
+}
+.goods-title{
+    height: 40px;
+    font-size: 18px;
+    line-height: 60px;
+}
+.goods-title a{
+    color: #424242;
+}
+.goods-des{
+    height: 60px;
+    line-height: 30px;
+    font-size: 16px;
+    color: #b0b0b0;
+}
+
+.price{
+    width: 7%;
+    color: #424242;
+}
+.amount{
+    width: 20%;
+    text-align: center;
+}
+.change-block{
+    float:left;
+    font-size: 25px;
+    height: 100%;
+    color: #ff6700;
+}
+.change-ctn{
+    height: 60px;
+    width: 75%;
+    line-height: 60px;
+    margin: 20px auto;
+    border: 1px solid rgb(224, 224, 224);
+}
+.minus{
+    width: 30%;
+    text-align: right;
+    cursor: pointer;
+}
+.num{
+    width: 35%;
+}
+.add{
+    width: 30%;
+    text-align: left;
+    cursor: pointer;
+}
+.sum{
+    width: 8%;
+    color: #424242
+}
+.operat{
+    width: 11%;
+    font-size: 25px;
+    color: #757575;
+    font-family: 'iconfont';
+    cursor: pointer;
+}
+.check-box{
+    color: white;
+    font-size: 10px;   
+}
+
+
+.settle-account-ctn{
+    width: 90%;
+    height: 50px;
+    margin: 20px 4% 20px 5%;
+    background: white;
+    position: fixed;
+    top: 550px;
+    left: 0px;
+}
+.tip-num{
+    color: #757575;
+    float: left;
+    margin-left: 20px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+}
+.span-num{
+    color: #ff6700;
+}
+.to-settle{
+    display: block;
+    float: right;
+    width: 200px;
+    height: 50px;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    background: #f25807;
+    font-size: 18px;
+}
+.tip-price{
+    float: right;
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 16px;
+    color: #ff6700;
+}
+.final-price{
+    font-size: 24px;
+}

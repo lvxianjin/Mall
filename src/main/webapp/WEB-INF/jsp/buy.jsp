@@ -25,10 +25,10 @@
     <header class="nav-ctn">
         <div class="nav-list-ctn">
             <ul class="ul-base nav-list">
-                <li class="li-base nav-li-item"><a class="a-base a-category" href="more.html">手机</a></li>
-                <li class="li-base nav-li-item"><a class="a-base a-category" href="more.html">笔记本</a></li>
-                <li class="li-base nav-li-item"><a class="a-base a-category" href="more.html">电视</a></li>
-                <li class="li-base nav-li-item"><a class="a-base a-category" href="more.html">配件</a></li>
+                <li class="li-base nav-li-item"><a class="a-base a-category" href="<%=path%>/more.html?type=phone">手机</a></li>
+                <li class="li-base nav-li-item"><a class="a-base a-category" href="<%=path%>/more.html?type=notebook">笔记本</a></li>
+                <li class="li-base nav-li-item"><a class="a-base a-category" href="<%=path%>/more.html?type=tv">电视</a></li>
+                <li class="li-base nav-li-item"><a class="a-base a-category" href="<%=path%>/more.html?type=part">配件</a></li>配件</a></li>
             </ul>
         </div>
         <div class="search-ctn">
@@ -39,7 +39,7 @@
         <div class="nav-user-ctn">
             <c:if test="${Userinfo.account eq null }">
                 <div class="unlogged" id="unlogged">
-                    <a class="a-base" href="register">注册</a>
+                    <a class="a-base" href="register.html">注册</a>
                     <div></div>
                     <a class="a-base" href="<%=path%>/login.html">登录</a>
                 </div>
@@ -50,6 +50,7 @@
                 <span class="user-name" id="user-name">${Userinfo.nick_name}</span>
                 <ul class="user-space" id="user-space">
                     <li class="li-base user-space-li-item"><a class="a-base a-user-space" href="order">我的订单</a></li>
+                    <li class="li-base user-space-li-item"><a class="a-base a-user-space" href="<%=path%>/CarList.html">购物车</a></li>
                     <li class="li-base user-space-li-item"><a class="a-base a-user-space" href="portal">个人中心</a></li>
                     <li class="li-base li-line"></li>
                     <li class="li-base user-space-li-item"><a class="a-base a-user-space" href="<%=path%>/exit.html">退出</a></li>
@@ -75,6 +76,7 @@
         </ul>
         </h2>
     </div>
+
     <section class="main-ctn">
         <div class="item-img-ctn">
             <c:forEach begin="0" end="0" var="goods" items="${GoodsInfo}">
@@ -113,56 +115,56 @@
                 <c:if test="${type eq 'phone'}">
                     <div class="actual-choose">
                         <h3 class="choose-title">选择颜色</h3>
-                        <c:forEach items="${ColorList}" var="color">
-                            <div class="choose-value choose-value0" data='{"index": 0, "field": "color"}'>${color}</div>
+                        <c:forEach items="${ColorList}" var="color" varStatus="varStatus">
+                            <div class="choose-value choose-value0" data='{"index":0, "field": "color"}'>${color}</div>
                         </c:forEach>
                     </div>
                     <div class="actual-choose">
                         <h3 class="choose-title">选择RAM</h3>
-                        <c:forEach items="${RamList}" var="ram">
-                            <div class="choose-value choose-value0" data='{"index": 0, "field": "color"}'>${ram}</div>
+                        <c:forEach items="${RamList}" var="ram" varStatus="varStatus">
+                            <div class="choose-value choose-value1" data='{"index":1, "field": "ram"}'>${ram}</div>
                         </c:forEach>
                     </div>
                     <div class="actual-choose">
                         <h3 class="choose-title">选择ROM</h3>
-                        <c:forEach items="${RomList}" var="rom">
-                            <div class="choose-value choose-value0" data='{"index": 0, "field": "color"}'>${rom}</div>
+                        <c:forEach items="${RomList}" var="rom" varStatus="varStatus">
+                            <div class="choose-value choose-value2" data='{"index":2, "field": "rom"}'>${rom}</div>
                         </c:forEach>
                     </div>
                 </c:if>
                 <c:if test="${type eq 'notebook'}">
                     <div class="actual-choose">
                         <h3 class="choose-title">选择颜色</h3>
-                        <c:forEach items="${ColorList}" var="color">
-                            <div class="choose-value choose-value0" data='{"index": 0, "field": "color"}'>${color}</div>
+                        <c:forEach items="${ColorList}" var="color" varStatus="varStatus">
+                            <div class="choose-value choose-value0" data='{"index":0, "field": "color"}'>${color}</div>
                         </c:forEach>
                     </div>
                     <div class="actual-choose">
                         <h3 class="choose-title">选择版本</h3>
-                        <c:forEach items="${VersionList}" var="version">
-                            <div class="choose-value choose-value0" data='{"index": 0, "field": "color"}'>${version}</div>
+                        <c:forEach items="${VersionList}" var="version" varStatus="varStatus">
+                            <div class="choose-value choose-value1" data='{"index":1, "field": "version"}'>${version}</div>
                         </c:forEach>
                     </div>
                 </c:if>
                 <c:if test="${type eq 'tv'}">
                     <div class="actual-choose">
                         <h3 class="choose-title">选择颜色</h3>
-                        <c:forEach items="${ColorList}" var="color">
-                            <div class="choose-value choose-value0" data='{"index": 0, "field": "color"}'>${color}</div>
+                        <c:forEach items="${ColorList}" var="color" varStatus="varStatus">
+                            <div class="choose-value choose-value0" data='{"index":0, "field": "color"}'>${color}</div>
                         </c:forEach>
                     </div>
                     <div class="actual-choose">
                         <h3 class="choose-title">选择版本</h3>
-                        <c:forEach items="${VersionList}" var="version">
-                            <div class="choose-value choose-value0" data='{"index": 0, "field": "color"}'>${version}</div>
+                        <c:forEach items="${VersionList}" var="version" varStatus="varStatus">
+                            <div class="choose-value choose-value1" data='{"index":1, "field": "version"}'>${version}</div>
                         </c:forEach>
                     </div>
                 </c:if>
                 <c:if test="${type eq 'part'}">
                 <div class="actual-choose">
                     <h3 class="choose-title">选择颜色</h3>
-                    <c:forEach items="${ColorList}" var="color">
-                        <div class="choose-value choose-value0" data='{"index": 0, "field": "color"}'>${color}</div>
+                    <c:forEach items="${ColorList}" var="color" varStatus="varStatus">
+                        <div class="choose-value choose-value0" data='{"index":0, "field": "color"}'>${color}</div>
                     </c:forEach>
                 </div>
             </c:if>
@@ -172,7 +174,7 @@
             <div class="goods-price">
                 <h3 class="title-left">单价</h3>
                 <!-- 插入数据 单价-->
-                <div class="content-right price" id="price"></div>
+                <div class="content-right price" id="price">0</div>
             </div>
             <!-- 选择数量 -->
             <div class="choose-amount-ctn">
@@ -199,10 +201,12 @@
             <!-- 购买 -->
             <div class="buy-ctn">
                 <a class="a-base buy-submmit" href="" id="add-to-cart">加入购物车</a>
-                <a class="a-base cart" href="cart.html" id="to-cart">结算</a>
+                <a class="a-base cart" href="<%=path%>/CarList.html" id="to-cart">结算</a>
             </div>
         </div>
     </section>
+
+    <!-- 参数 -->
     <c:if test="${type eq 'phone'}">
         <section class="parameter" id="parameter">
             <div class="title-ctn"><span class="title-span">参数</span></div>
@@ -533,6 +537,7 @@
         var amountValue = $('#amount');
         var confirm_amount = $('#confirm-amount');
         var confirm_price = $('#confirm-price');
+        var title = $("#confirm-text").getAttr('innerText');
 
         $('.choose-value').on('click', function(e){
             var data = JSON.parse($(e.target).getOriAttr('data'));
@@ -541,19 +546,37 @@
                 return;
 
             //未选
+
             $('.choose-value'+data.index).setStyle(['border', 'color'], [COLOR_C.bdNotChoosed, COLOR_C.bgNotChoosed]).setAttr('choosed', false);
             $(e.target).setStyle(['border', 'color'], [COLOR_C.bdChoosed, COLOR_C.bgChoosed]).setAttr('choosed', true);
 
+
             //全选了？验证
+
+            if(!complete(chooseLen))
+                return;
+            //更新确认提示文本
+            var confirmStr = title;
+            [].every.call($('.choose-value').element, function(e){
+                if(!e.choosed)
+                    return true;
+                confirmStr += '+' + $(e).getAttr('innerText');
+                return  true;
+            });
+            $('#confirm-text').setAttr('innerText', confirmStr);
+            //验证有无货，并更新单价和总价
             validate(chooseLen);
         });
         $('#minus').on('click', function(e){
             var amount = parseInt(amountValue.getAttr('innerText')) - 1;
+            var price = parseInt($('#price').getAttr('innerText'));
             if(amount === 0)
                 return;
+            price = price === NaN ? 0 : price;
             amountValue.setAttr('innerText', amount);
-            confirm_price.setAttr('innerText', amount*parseInt($('#price').getAttr('innerText')));
-            confirm_amount.setAttr('innerText', amount);validate(chooseLen);
+            confirm_price.setAttr('innerText', amount*price);
+            confirm_amount.setAttr('innerText', amount);
+            validate(chooseLen);
         });
         $('#add').on('click', function(e){
             var amount = parseInt(amountValue.getAttr('innerText')) + 1;
@@ -566,31 +589,42 @@
         function complete(chooseLen){
             var choosed = false;
             for(var i=0; i < chooseLen; i ++){
-                [].every.call($('.choose-value'+i).element, function(e){
-                    if(e.choosed){
+                choosed = false;
+                Array.prototype.every.call($('.choose-value'+i).element, function(e){
+                    if(e.choosed === true){
                         choosed = true;
                         return false;
                     }
                     return true;
                 });
-                if(!choosed)
+
+                if(choosed === false)
                     return false;
-                choosed = false;
             }
             return true;
         }
         function sendAjax(chooseLen){
             return new Promise((resolve, reject) => {
-                        var choose = getChoose(chooseLen);
-            $.get('ajax/validate_goods', choose).then(resolve, reject).catch(err => {
-                console.log(err);
-        });
-        });
+                var choose = getChoose(chooseLen);
+                $.get('ajax/validate-goods.html', choose).then(resolve, reject).catch(err => {
+                    console.log(err);
+                });
+            });
         }
         function validate(chooseLen){
-            if(complete(chooseLen)){
-                sendAjax(chooseLen).then(rs => {
-                    rs = JSON.parse(rs);
+            sendAjax(chooseLen).then(rs => {
+                console.log(rs);
+                rs = JSON.parse(rs);
+                
+                if(rs.err === true){
+                    $('#surplus').setAttr('innerText', '服务器出了小问题').setStyle('color', COLOR_C.connectErr);
+                    return;
+                }
+
+                var amount = parseInt($('#confirm-amount').getAttr('innerText'));
+                $('#price').setAttr('innerText', rs.price);
+                $('#confirm-price').setAttr('innerText', rs.price * amount);
+
                 if(!rs.thereIs){
                     $('#surplus').setAttr('innerText', '存货不足!').setStyle('color', COLOR_C.thereNot);
                 }else{
@@ -602,8 +636,6 @@
                 }).catch(err => {
                     console.log(err);
             });
-            }
-
         }
     })();
 
@@ -696,6 +728,7 @@
 
     (function handleAddToCart(undefined){
         $('#add-to-cart').on('click', function(e){
+
             sendAjax().then(rs => {
                 rs = JSON.parse(rs);
             if(rs.success){
@@ -718,10 +751,11 @@
         });
         function sendAjax(){
             return new Promise((resolve, reject) => {
-                        var lastIndex = "choose-value choose-value1".length-1;
+            var lastIndex = "choose-value choose-value1".length-1;
             var chooseLen = parseInt($('.choose-value').getAttr('className', $('.choose-value').element.length-1)[lastIndex]) + 1;
             var choose = getChoose(chooseLen);
-            $.post('ajax/add-to-cart', choose).then(resolve, reject).catch(err => {
+            console.log(choose);
+            $.post('ajax/add-to-cart.html', choose).then(resolve, reject).catch(err => {
                 console.log(err);
         });
         });
@@ -850,8 +884,8 @@
 
     function getChoose(chooseLen){
         var choose = {
-            goods_id: $('#goods-id').getAttr('value'),
-            category: $('#category').getAttr('value'),
+            goods_id: parseInt( $('#goods-id').getAttr('value')),
+            type: $('#category').getAttr('value'),
             amount: parseInt($('#amount').getAttr('innerText'))
         };
         for(var i=0; i < chooseLen; i ++){

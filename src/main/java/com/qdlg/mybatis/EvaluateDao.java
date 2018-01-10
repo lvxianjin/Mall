@@ -11,4 +11,6 @@ import java.util.Map;
 public interface EvaluateDao {
     //获取商品评价信息
     List<Map<String,Object>> getGoodsEvaluate(@Param("id") int id,@Param("type") String type);
+    //获取用户评价信息
+    List<Map<String,Object>> getEvaluateByUserId(int id);
 }

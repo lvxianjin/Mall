@@ -9,9 +9,18 @@ import java.sql.Timestamp;
  */
 public class NewGoods {
     private int id;
+    private int goods_id;
     private String img_src;
     private Timestamp addtime;
     private String type;
+
+    public int getGoods_id() {
+        return goods_id;
+    }
+
+    public void setGoods_id(int goods_id) {
+        this.goods_id = goods_id;
+    }
 
     public int getId() {
         return id;
